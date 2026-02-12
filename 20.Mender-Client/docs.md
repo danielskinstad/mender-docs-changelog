@@ -7,6 +7,57 @@ shortcode-core:
 github: false
 ---
 
+## mender 5.0.4-build2
+
+_Released 02.11.2026_
+
+### Changelogs
+
+#### mender (5.0.4-build2)
+
+New changes in mender since 5.0.3:
+
+##### Bug Fixes
+
+* Fix an issue where the incorrect error message was returned when the artifact parsing failed.
+* Sanitized the payload_type field of Mender artifacts, removing relative paths pointing outside Update Modules directory.
+  ([MEN-9027](https://northerntech.atlassian.net/browse/MEN-9027))
+* Sanitized the State Script filenames, removing filenames resulting in relative paths pointing outside State Script directory.
+  ([MEN-9057](https://northerntech.atlassian.net/browse/MEN-9057))
+* Sanitized artifact's payload filenames, removing filenames resulting in relative paths pointing outside work directory when the file is extracted.
+  ([MEN-9056](https://northerntech.atlassian.net/browse/MEN-9056))
+* Check that signature is exact 64 bytes.
+  ([MEN-9055](https://northerntech.atlassian.net/browse/MEN-9055))
+* Sanitize header list of payloads and corresponding type-info files. No extra or missing type-info
+  files are allowed. No empty payload specification in header-info is allowed.
+  ([MEN-9098](https://northerntech.atlassian.net/browse/MEN-9098))
+* single-file-artifact-gen and directory-artifact-gen now handle arguments in a safer way
+  ([MEN-9115](https://northerntech.atlassian.net/browse/MEN-9115))
+* Strip only the artifact's header compression extension (.gz, .xz, .zst) instead of the suffixes
+  all files in the manifest.
+  ([MEN-9146](https://northerntech.atlassian.net/browse/MEN-9146))
+* Return an error when artifact payload contains files not present in the manifest and don't process any further payload files.
+  ([MEN-9109](https://northerntech.atlassian.net/browse/MEN-9109))
+* Fixed use-after-free errors when freeing tcp stream socket
+  which pending async read handlers needed access to.
+  ([MEN-9104](https://northerntech.atlassian.net/browse/MEN-9104))
+* Added a 5 minute timeout to all async read, write and connect
+  operations that use Boost Beast's tcp stream socket to ensure recovery in case
+  of hanging async operations.
+* add Host header to proxy HTTP CONNECT request
+  ([MEN-9262](https://northerntech.atlassian.net/browse/MEN-9262))
+* Sanitize deployments logs from disk before sending them to
+  the server. Fixes the issue that a corrupted log file will trigger HTTP
+  400 Bad Request from the server and the logs would never be submitted.
+  With this fix the corrupted line(s) are replaced with a known error
+  entry "(corrupted log)", savaging the rest of the well-formatted logs.
+  ([MEN-9128](https://northerntech.atlassian.net/browse/MEN-9128))
+
+##### Other
+
+* single-file-artifact-gen and directory-artifact-gen scripts now require Bash
+  ([MEN-9115](https://northerntech.atlassian.net/browse/MEN-9115))
+
 
 ## mender 5.0.3
 

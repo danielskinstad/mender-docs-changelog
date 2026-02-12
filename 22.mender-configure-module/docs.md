@@ -7,6 +7,23 @@ shortcode-core:
 github: false
 ---
 
+## mender-configure-module 1.1.4-build2
+
+_Released 02.11.2026_
+
+### Changelogs
+
+#### mender-configure-module (1.1.4-build2)
+
+New changes in mender-configure-module since 1.1.3:
+
+##### Bug Fixes
+
+* Updated path to LED on raspberrypi to allow for blinking LED
+  demo.
+  ([MEN-9002](https://northerntech.atlassian.net/browse/MEN-9002))
+
+
 ## mender-configure-module 1.1.3
 
 _Released 11.03.2025_

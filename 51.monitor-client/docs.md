@@ -7,6 +7,21 @@ shortcode-core:
 github: false
 ---
 
+## monitor-client 1.4.4-build2
+
+_Released 02.11.2026_
+
+### Changelogs
+
+#### monitor-client (1.4.4-build2)
+
+New changes in monitor-client since 1.4.3:
+
+##### Bug Fixes
+
+* Removed curl verbose data from logs
+
+
 ## monitor-client 1.4.3
 
 _Released 11.03.2025_

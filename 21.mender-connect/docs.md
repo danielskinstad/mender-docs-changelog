@@ -7,6 +7,22 @@ shortcode-core:
 github: false
 ---
 
+## mender-connect 2.3.2-build2
+
+_Released 02.11.2026_
+
+### Changelogs
+
+#### mender-connect (2.3.2-build2)
+
+New changes in mender-connect since 2.3.1:
+
+##### Bug Fixes
+
+* make StopShell function re-entrant by protecting stop channel
+  ([MEN-9029](https://northerntech.atlassian.net/browse/MEN-9029))
+
+
 ## mender-connect 2.3.1
 
 _Released 07.24.2025_

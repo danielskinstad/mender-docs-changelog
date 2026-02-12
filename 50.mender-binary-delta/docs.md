@@ -7,6 +7,21 @@ shortcode-core:
 github: false
 ---
 
+## mender-binary-delta 1.5.3-build2
+
+_Released 02.11.2026_
+
+### Changelogs
+
+#### mender-binary-delta (1.5.3-build2)
+
+New changes in mender-binary-delta since 1.5.2:
+
+##### Bug Fixes
+
+* Add missing license to the OS licenses manifest
+
+
 ## mender-binary-delta 1.5.2
 
 _Released 11.03.2025_
