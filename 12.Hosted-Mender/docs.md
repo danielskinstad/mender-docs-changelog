@@ -7,7 +7,77 @@ shortcode-core:
 github: false
 ---
 
-## 4.2.0-saas.7 - 2026-05-06
+## 4.2.0-saas.8 - 2026-05-07
+
+
+### Bug fixes
+
+
+- *(deployments)* Skip inventory fallback when result page overshoots
+([ME-651](https://northerntech.atlassian.net/browse/ME-651)) ([84c2cb6](https://github.com/mendersoftware/mender-server-enterprise/commit/84c2cb655f89e17ba420782e349a7991b1a01f53))  by @LudvigAnderson
+
+
+
+
+
+
+- *(deployments)* Check software kind when fetching a manifest
+ ([4cdedc4](https://github.com/mendersoftware/mender-server-enterprise/commit/4cdedc4353f034b41358a7e98ec43ee70cc745bd))  by @bahaa-ghazal
+
+
+
+- *(deviceconnect)* Properly flush session recording
+ ([212e018](https://github.com/mendersoftware/mender-server-enterprise/commit/212e0188dff1a674e58b90a487e4ad2f1e0a0b91))  by @alfrunes
+
+
+
+
+  If client closes the connection, the context is cancelled
+  and the buffered data is not recorded.
+
+- *(gui)* Refresh the configuration device details on finished deployment
+([MEN-6415](https://northerntech.atlassian.net/browse/MEN-6415)) ([1e88383](https://github.com/mendersoftware/mender-server-enterprise/commit/1e883830f6497b6ea62d1b58e4a67ae486409d4d))  by @merlin-northern
+
+
+
+
+
+
+
+- *(gui)* Ensured deployment phase size input doesn't get fully compressed
+ ([1c9ec69](https://github.com/mendersoftware/mender-server-enterprise/commit/1c9ec69383153db901363fbaed937ef37da0c131))  by @mzedel
+
+
+
+- *(gui)* Fixed an issue that could crash the app by showing & hiding search results too fast
+ ([6d69a62](https://github.com/mendersoftware/mender-server-enterprise/commit/6d69a625e3f90947a027a29ee832384cf736c4c0))  by @mzedel
+
+
+
+
+
+
+
+### Refactor
+
+
+- *(deviceconnect)* Move buffering and compression to Recorder interface
+ ([e7231c4](https://github.com/mendersoftware/mender-server-enterprise/commit/e7231c4f7e0bcaf43281b0e480f8e7fab6c59ab2))  by @alfrunes
+
+
+
+
+  Swapped the order of gzip compression and buffered I/O to always write
+  fixed compressed record sizes. Previous implementation would flush when
+  writing block size of uncompressed data.
+
+
+
+
+
+
+
+## 4.2.0-saas.7 - 2026-05-05
 
 
 ### Bug fixes
