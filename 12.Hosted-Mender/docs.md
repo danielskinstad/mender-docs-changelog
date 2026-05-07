@@ -7,6 +7,623 @@ shortcode-core:
 github: false
 ---
 
+## 4.2.0-saas.7 - 2026-05-06
+
+
+### Bug fixes
+
+
+- *(deployments)* Stop decreasing phase counter on failed deployments
+([MEN-9509](https://northerntech.atlassian.net/browse/MEN-9509)) ([44f86a6](https://github.com/mendersoftware/mender-server-enterprise/commit/44f86a699a28d77c2162e3dbd620c728fc7d52a5))  by @bahaa-ghazal
+
+
+
+
+- *(deployments)* Removed type discriminator from ReleaseBase JSON
+ ([a4f4a14](https://github.com/mendersoftware/mender-server-enterprise/commit/a4f4a14b64b481753164e4771f37c1b8dda46145))  by @frodeha
+
+
+
+- *(deployments)* Removed omitempty from ImageMeta description
+ ([74a46d4](https://github.com/mendersoftware/mender-server-enterprise/commit/74a46d436bcce415af1eedabb5b774e9b2566bc7))  by @frodeha
+
+
+
+
+  The `description` property of ImageMeta maps to the description property
+  of both ArtifactV2 and ArtifactV1 in OAS. In V2, description is marked
+  as required, while in V1 it is not. Removing the required from V2 would
+  be a breaking change, so we must rather always return a (potentially
+  empty) value in order to respect both versions.
+
+- *(deployments)* Made 'modified' an optional property of Manifest
+([MEN-9049](https://northerntech.atlassian.net/browse/MEN-9049)) ([9b4e1ca](https://github.com/mendersoftware/mender-server-enterprise/commit/9b4e1ca2916ce2a11d134ee74bb34d709612a683))  by @frodeha
+
+
+
+
+- *(deployments)* Added description validation in multipart uploads
+([MEN-9049](https://northerntech.atlassian.net/browse/MEN-9049)) ([10e1233](https://github.com/mendersoftware/mender-server-enterprise/commit/10e123345ead09e87ee3f12d1c4f650dfec720cf))  by @frodeha
+
+
+
+
+- *(deployments)* Set Manifest modified based on artifact modified
+ ([ff00f2c](https://github.com/mendersoftware/mender-server-enterprise/commit/ff00f2c00451c2746f11eaa2b11381163f8d9571))  by @frodeha
+
+
+
+
+- *(deployments)* Use common default openapi client configuration
+ ([5ddd1a1](https://github.com/mendersoftware/mender-server-enterprise/commit/5ddd1a1a3f3689ff40aaafc30c4f883174c62379))  by @frodeha
+
+
+
+
+- *(deployments)* Fixed an issue that prevented filtering deployments by group in some cases
+([MEN-9639](https://northerntech.atlassian.net/browse/MEN-9639)) ([7ade951](https://github.com/mendersoftware/mender-server-enterprise/commit/7ade951ff6339165e8e8d733ad593c08cac8607f))  by @mzedel
+
+
+
+
+- *(deployments)* Correct total count when result page overshoots
+([MEN-9643](https://northerntech.atlassian.net/browse/MEN-9643)) ([fe9ee10](https://github.com/mendersoftware/mender-server-enterprise/commit/fe9ee10663029f4b7519d660752d5e630d5138fc))  by @LudvigAnderson
+
+
+
+
+
+
+  The `/api/management/v2/deployments/deployments` endpoint previously returned `X-Total-Count: 0` when the requested page was beyond the last page of a non-empty result set. The total count is now preserved through empty pages.
+
+- *(deviceauth)* Standardized and condensed internal limit APIs
+([MEN-9470](https://northerntech.atlassian.net/browse/MEN-9470)) ([4cf6b45](https://github.com/mendersoftware/mender-server-enterprise/commit/4cf6b4515b863759caffbd6ea14d9575cfeb674b))  by @frodeha
+
+
+
+
+
+  Removed some unused internal limits API endpoints, adapted the API
+  response format used in the managment APIs and standardized on a
+  single way of reading limits in the business logic layer. Instead
+  of having 3-4 different business logic operations to read limits /
+  tenant limits / tenants limit / tenants limits. We now have one read
+  limits and one read limit (which simple calls read limits internally)
+  operation.
+  
+  The aim is to have _one_ place we have reading logic (0 vs -1 etc) and
+  caching instead of many.
+
+- *(deviceauth)* Used inventory statistics as current limit usage
+([MEN-9470](https://northerntech.atlassian.net/browse/MEN-9470)) ([07342b3](https://github.com/mendersoftware/mender-server-enterprise/commit/07342b38fb612f9ed52806c8acfd08eedb42d23e))  by @frodeha
+
+
+
+
+
+  Rely on the inventory statistics provided by inventory over the
+  current_usage of the local limit (which isn't reliably set) when
+  validating if a limit can be decreased (e.g to make sure the limit can't
+  be set below the current number of accepted devices).
+
+- *(deviceauth)* Restrict deviceconnect device endpoints to troubleshoot add-on
+ ([895049f](https://github.com/mendersoftware/mender-server-enterprise/commit/895049f3346df0936dd7428cafce8e7ecf6b26c2))  by @bahaa-ghazal
+
+
+
+- *(deviceconnect)* Connection status race condition on disconnect
+ ([f819f9e](https://github.com/mendersoftware/mender-server-enterprise/commit/f819f9ed54f59ed220c0168fce4d673f3d1ab8b7))  by @alfrunes
+
+
+
+
+
+  When a mender-connect agent disconnects, the status is not always
+  updated as the context is cancelled independently from a separate go
+  routine leading to a race condition. This commit changes the database
+  update to the main go routine and ensures the operation is not cancelled
+  by external events.
+
+- *(gui)* Soften warning about sharing tenant token
+([ME-620](https://northerntech.atlassian.net/browse/ME-620)) ([d143cb9](https://github.com/mendersoftware/mender-server-enterprise/commit/d143cb986f37ba29372ad38153559e44d91ec2fa))  by @nickanderson
+
+
+
+
+
+  Update the warning message to accurately reflect the risk of unauthorized device authorization requests instead of comparing the token to a password.
+
+- *(gui)* Removed react-ga workaround to allow re-enabling ga tracking
+ ([16b3626](https://github.com/mendersoftware/mender-server-enterprise/commit/16b3626048bcd3db14a403a948150076bc5dbbb1))  by @mzedel
+
+
+
+- *(gui)* Ensured table column changes are consistently applied for all rows if they are set
+ ([872e6ba](https://github.com/mendersoftware/mender-server-enterprise/commit/872e6ba056d5ce35051c34ad5263fa172f27eebe))  by @mzedel
+
+
+
+- *(gui)* Fixed an issue that prevented changing the device identity attribute on the device list
+ ([dd534aa](https://github.com/mendersoftware/mender-server-enterprise/commit/dd534aa4b4beca19c1d5e52535fca95131be0349))  by @mzedel
+
+
+
+- *(gui)* Aligned the deployment status dark mode background color
+ ([f341bb3](https://github.com/mendersoftware/mender-server-enterprise/commit/f341bb3b41fca533303be6bd5bb97a9eb505261d))  by @mineralsfree
+
+
+
+- *(gui)* Restored onchange password strength indication
+ ([6197b33](https://github.com/mendersoftware/mender-server-enterprise/commit/6197b33fa1fcf354a6751b6751743359cb571470))  by @mzedel
+
+
+
+- *(inventory)* Properly sanitize device attribute
+ ([ef55aa4](https://github.com/mendersoftware/mender-server-enterprise/commit/ef55aa4a487e555c513ffd4b30596ea1eaf968df))  by @alfrunes
+
+
+
+
+  Prevent devices to assign scope and make timestamp value read-only.
+
+- *(pkg)* Used http as default scheme in openapi client configs
+ ([3f2b54a](https://github.com/mendersoftware/mender-server-enterprise/commit/3f2b54a5739e506b474c7a1310dd6f6f721ded95))  by @frodeha
+
+
+
+
+- *(tenantadm)* Adjusted tenantadm to work with new limits format
+([MEN-9470](https://northerntech.atlassian.net/browse/MEN-9470)) ([cd8a0f6](https://github.com/mendersoftware/mender-server-enterprise/commit/cd8a0f6f00d7239002d7b3535f8ecb90cdc5f014))  by @frodeha
+
+
+
+
+- *(tenantadm)* Limit organization name length to 256 char
+([MEN-9423](https://northerntech.atlassian.net/browse/MEN-9423)) ([f0f5197](https://github.com/mendersoftware/mender-server-enterprise/commit/f0f519700e932605f249bcfc6c31e52a59254ee6))  by @bahaa-ghazal
+
+
+
+
+- *(useradm)* Fix CountUsers method after moving other parts to mongo driver v2
+([MEN-9593](https://northerntech.atlassian.net/browse/MEN-9593)) ([b8fb816](https://github.com/mendersoftware/mender-server-enterprise/commit/b8fb816de8d682a1fcab315e29a820cf65d15ca2))  by @kjaskiewiczz
+
+
+
+  With this commit we are using mongo driver v2 in
+  the datastore_mongo_enterprise_stats.go too.
+  Otherwise the method doesnt work at all.
+  
+  MEN-9593
+  Signed-off-by: Krzysztof Jaskiewicz <krzysztof.jaskiewicz@northern.tech>
+
+- *(useradm)* Limit email and password length to 256 char
+([MEN-9423](https://northerntech.atlassian.net/browse/MEN-9423)) ([34e6104](https://github.com/mendersoftware/mender-server-enterprise/commit/34e61042ffdce77954664788401d5c61a295827e))  by @bahaa-ghazal
+
+
+
+
+- *(useradm)* Check HTTP method when evaluating access rules
+ ([1f0e7d9](https://github.com/mendersoftware/mender-server-enterprise/commit/1f0e7d90f3e70256e3859909d4cf8dea2209be32))  by @bahaa-ghazal
+
+
+
+- Propagate device with proper tier
+([MEN-9594](https://northerntech.atlassian.net/browse/MEN-9594)) ([d2e59b5](https://github.com/mendersoftware/mender-server-enterprise/commit/d2e59b5ffe19e67ff4abe466cd642ef801c3d1fb))  by @kjaskiewiczz
+
+
+
+  MEN-9594
+  Signed-off-by: Krzysztof Jaskiewicz <krzysztof.jaskiewicz@northern.tech>
+
+
+
+
+### Documentation
+
+
+- *(deployments)* Added OAS spec for new API to upload manifest
+ ([7f5d5ef](https://github.com/mendersoftware/mender-server-enterprise/commit/7f5d5ef7759e85e1dbdcf984875a9107fbd5b389))  by @alfrunes
+
+
+
+- *(deployments)* Added OAS for new read Manifest alpha endpoints
+ ([e6f6960](https://github.com/mendersoftware/mender-server-enterprise/commit/e6f69608fafff245c0c2be429982e8d12cf97b94))  by @frodeha
+
+
+
+- *(deployments)* Added 402 as response to manifest endpoints
+ ([34b073c](https://github.com/mendersoftware/mender-server-enterprise/commit/34b073cb0a6074f489c7e4fb744eec607ed2f145))  by @frodeha
+
+
+
+
+- *(deployments)* Added x-mender-plan to manifest alpha endpoints
+ ([44ec3b4](https://github.com/mendersoftware/mender-server-enterprise/commit/44ec3b4fa1e101f79bdbb22aca131d27e5870253))  by @frodeha
+
+
+
+
+- *(deployments)* Added description of tag filtering in releases endpoint
+ ([e6d3b18](https://github.com/mendersoftware/mender-server-enterprise/commit/e6d3b181243462166e7b646c507a1f1d38ce0e83))  by @frodeha
+
+
+
+
+- *(deviceconfig)* Add configure add-on tag to endpoints
+([QA-1588](https://northerntech.atlassian.net/browse/QA-1588)) ([2c2ec73](https://github.com/mendersoftware/mender-server-enterprise/commit/2c2ec73ab1655b8f8417608c62bd5c229a9d0cde))  by @bahaa-ghazal
+
+
+
+
+- *(deviceconnect)* Add troubleshoot add-on tag to endpoints
+([QA-1588](https://northerntech.atlassian.net/browse/QA-1588)) ([c019b44](https://github.com/mendersoftware/mender-server-enterprise/commit/c019b44a58fef1c04144eefee3c146fc6431deed))  by @bahaa-ghazal
+
+
+
+
+- *(devicemonitor)* Add monitor add-on and plan tags to endpoints
+([QA-1588](https://northerntech.atlassian.net/browse/QA-1588)) ([0a7102b](https://github.com/mendersoftware/mender-server-enterprise/commit/0a7102b4e40b0f0e85ec745879557cbe2bbcadff))  by @bahaa-ghazal
+
+
+
+
+- *(inventory)* Consolidate device attribute definitions
+ ([144a914](https://github.com/mendersoftware/mender-server-enterprise/commit/144a914e0c24fbe093665c6b1a7fb6f127d3c869))  by @alfrunes
+
+
+
+- *(tenantadm)* Add new endpoint for obtaining tenant information
+([MEN-5248](https://northerntech.atlassian.net/browse/MEN-5248)) ([90e7a30](https://github.com/mendersoftware/mender-server-enterprise/commit/90e7a30a783ba674e1c0ecbf9a793d8015946a32))  by @bahaa-ghazal
+
+
+
+
+
+  This endpoint behaves exactly like the `/user/tenant` endpoint,
+  but the `tenant_token` is omitted from the response for security reasons.
+
+- *(useradm)* Align POST `/users` documentation with implementation
+ ([13a3e43](https://github.com/mendersoftware/mender-server-enterprise/commit/13a3e434d48ffdea457ec0f9ba60381983f1e059))  by @bahaa-ghazal
+
+
+
+- *(useradm)* Add plan tag to endpoints
+([QA-1588](https://northerntech.atlassian.net/browse/QA-1588)) ([1e98bf7](https://github.com/mendersoftware/mender-server-enterprise/commit/1e98bf721323320120a61431962d80dbb5b94b25))  by @bahaa-ghazal
+
+
+
+
+- *(workflows)* Fix incorrectly documented workflows schemas
+ ([7bb2740](https://github.com/mendersoftware/mender-server-enterprise/commit/7bb2740a114cf6292d82ccb93df3f941be8e2976))  by @alfrunes
+
+
+
+- Replaced invalid openapi formats
+ ([9b3c81b](https://github.com/mendersoftware/mender-server-enterprise/commit/9b3c81b52bc843020d2685500dc65c25fdd06a5f))  by @mineralsfree
+
+
+
+
+
+
+### Features
+
+
+- *(deployments)* Prevent uploading manifests to artifacts API
+([MEN-9435](https://northerntech.atlassian.net/browse/MEN-9435)) ([2bb4778](https://github.com/mendersoftware/mender-server-enterprise/commit/2bb4778e55dec3b2b64a6f8be38839a0a4f1ced2))  by @alfrunes
+
+
+
+
+
+  If manifests feature flag is enabled (`orchestrator_manifests.enabled`)
+  the regular artifact upload endpoint prevents uploading
+  `mender-orchestrator-manifest` module artifact types.
+
+- *(deployments)* New API for uploading orchestrator manifests
+([MEN-9408](https://northerntech.atlassian.net/browse/MEN-9408)) ([07377de](https://github.com/mendersoftware/mender-server-enterprise/commit/07377de9e76b996986bd894c1161e084049b49ce))  by @alfrunes
+
+
+
+
+
+  Available when the `orchestrator_manifests.enabled` feature flag is set.
+
+- *(deployments)* Added alpha endpoint for listing manifests
+([MEN-9409](https://northerntech.atlassian.net/browse/MEN-9409)) ([a3cef6e](https://github.com/mendersoftware/mender-server-enterprise/commit/a3cef6e894fe94797e7c185cb26a4916e06b17ba))  by @frodeha
+
+
+
+
+- *(deployments)* Added get manifest alpha endpoint
+([MEN-9410](https://northerntech.atlassian.net/browse/MEN-9410)) ([375b60d](https://github.com/mendersoftware/mender-server-enterprise/commit/375b60d4d9a3822500811f560232347869780cf8))  by @frodeha
+
+
+
+
+- *(deployments)* Added enterprise requirement on manifest routes
+ ([39cf5bc](https://github.com/mendersoftware/mender-server-enterprise/commit/39cf5bcd0dac78a8b19582cabf799c14f347e57e))  by @frodeha
+
+
+
+
+- *(gui)* Added generic contentsection component based on devicedatacollapse
+([MEN-9302](https://northerntech.atlassian.net/browse/MEN-9302)) ([a5f1635](https://github.com/mendersoftware/mender-server-enterprise/commit/a5f163555561a7da82def7aec59d6322fe1a6255))  by @mzedel
+
+
+
+
+- *(gui)* Added possibility to interact w/ the gui w/o a running backend
+ ([21b26f8](https://github.com/mendersoftware/mender-server-enterprise/commit/21b26f88018e01955cfc66a984b3e36db35ebc5e))  by @mzedel
+
+
+
+
+  - this relies on the mockdata defined in nt-gui/testing + the msw handlers from there
+
+- *(gui)* Added manifest upload tip
+ ([6e894b6](https://github.com/mendersoftware/mender-server-enterprise/commit/6e894b6af7619d11ddf0ad0e38992dcb6ec937f8))  by @mzedel
+
+
+
+- *(gui)* Added manifests list & filters components
+ ([db7e44d](https://github.com/mendersoftware/mender-server-enterprise/commit/db7e44d17f47cfe0f06fb3993e8febabdcfc013d))  by @mzedel
+
+
+
+- *(gui)* Added manifest quick actions component
+ ([be70703](https://github.com/mendersoftware/mender-server-enterprise/commit/be70703357db19d35eddb3439c52542530f65f5b))  by @mzedel
+
+
+
+- *(gui)* Added view to show details of software manifests
+ ([a4dd767](https://github.com/mendersoftware/mender-server-enterprise/commit/a4dd767a42e776384e1d9768aa0a8c6a35e99988))  by @mzedel
+
+
+
+- *(gui)* Added quick actions relevant when inspecting a single manifest
+ ([f276a24](https://github.com/mendersoftware/mender-server-enterprise/commit/f276a24943c0bc2425f457bf0debed7347965ddb))  by @mzedel
+
+
+
+- *(gui)* Added NumberField from MUI documentation
+([MEN-9138](https://northerntech.atlassian.net/browse/MEN-9138)) ([25b2a9d](https://github.com/mendersoftware/mender-server-enterprise/commit/25b2a9d4da78385709a8d27c4b7a14a07a8b3177))  by @mineralsfree
+
+
+
+
+- *(pkg)* Shared default openapi client configuration
+ ([25e6a65](https://github.com/mendersoftware/mender-server-enterprise/commit/25e6a653170daa7c8f196144791249f3f7b86e8d))  by @frodeha
+
+
+
+
+
+  Added a way to create shared default client configurations for use
+  when instantiating new openapi clients. The goal is to standardize
+  as much as possible and reduce copy/pasting.
+  
+  I also made this shared default client configuration able to forward
+  the requestID from one service to another transparently. This is not
+  being forwarded currently which breaks distributed tracing.
+
+- *(tenantadm)* Add endpoint for fetching current user tenant
+([MEN-5248](https://northerntech.atlassian.net/browse/MEN-5248)) ([3e1e043](https://github.com/mendersoftware/mender-server-enterprise/commit/3e1e0439cb50c07cec3d542f2a7365a2c33cff85))  by @bahaa-ghazal
+
+
+
+
+- *(useradm)* Notify user when assigned to tenant
+([MEN-8967](https://northerntech.atlassian.net/browse/MEN-8967)) ([c5603fa](https://github.com/mendersoftware/mender-server-enterprise/commit/c5603fad250f4c2e908d5ec1e2c6f340a8367db3))  by @bahaa-ghazal
+
+
+
+
+- *(useradm)* Cli to sync users with hubspot
+([MEN-8861](https://northerntech.atlassian.net/browse/MEN-8861)) ([ba150d0](https://github.com/mendersoftware/mender-server-enterprise/commit/ba150d03f19e1b764d13f400ef4968222ac48b0b))  by @merlin-northern
+
+
+
+
+
+
+- *(useradm)* Notify new users created by admins
+([MEN-8967](https://northerntech.atlassian.net/browse/MEN-8967)) ([b96206b](https://github.com/mendersoftware/mender-server-enterprise/commit/b96206bdfda938493067917df4051eda70949f59))  by @bahaa-ghazal
+
+
+
+
+- *(useradm)* Redirect to the new landing page for OAuth2 provider assign
+([MEN-8743](https://northerntech.atlassian.net/browse/MEN-8743)) ([7861ae7](https://github.com/mendersoftware/mender-server-enterprise/commit/7861ae72a5e1af890d8802ea8826519a536d5550))  by @merlin-northern
+
+
+
+
+
+
+- *(workflows)* Create workflow for sending email on user tenant assignment
+([MEN-8967](https://northerntech.atlassian.net/browse/MEN-8967)) ([4b90d36](https://github.com/mendersoftware/mender-server-enterprise/commit/4b90d36b1da10e0c268d958754d4be9fee132135))  by @bahaa-ghazal
+
+
+
+
+- New redis URL parameter `cluster` to enable cluster mode
+ ([09c4a30](https://github.com/mendersoftware/mender-server-enterprise/commit/09c4a3051705136f6c2819fb6c1aeb0e93466a67))  by @alfrunes
+
+
+
+
+  The parameter has the same effect as specifying multiple addresses and
+  enables Redis cluster mode.
+- Redis cluster max_retries uses hook that handles IP changes
+([MEN-9371](https://northerntech.atlassian.net/browse/MEN-9371)) ([2388853](https://github.com/mendersoftware/mender-server-enterprise/commit/23888532ce13c45b90581628e91ee5c5a193d6c3))  by @alfrunes
+
+
+
+
+
+  The redis URL parameter `max_retries` no longer use different default
+  than ordinary client options which has default of 3.
+  The `max_retries` also uses a hook that better handles nodes being
+  assigned new IP addresses, for example if hosted as Kubernetes
+  statefulset.
+
+
+
+
+### Refactor
+
+
+- *(auditlogs)* Used generated devauth client directly
+ ([15c3715](https://github.com/mendersoftware/mender-server-enterprise/commit/15c371584a3283936226d395346d27686d275aee))  by @frodeha
+
+
+
+
+- *(auditlogs)* Used generated useradm client directly
+ ([403bb11](https://github.com/mendersoftware/mender-server-enterprise/commit/403bb117d95d8e87a200f192ac8f44142962341d))  by @frodeha
+
+
+
+
+- *(auditlogs)* Deleted client shims
+ ([f77334c](https://github.com/mendersoftware/mender-server-enterprise/commit/f77334c305098bb0ce7d1174c396f93d23156379))  by @frodeha
+
+
+
+
+- *(deployments)* Split artifact parsing to separate func
+ ([28db280](https://github.com/mendersoftware/mender-server-enterprise/commit/28db280cab4d8a9ad86368c6b6c3317df9bfa844))  by @alfrunes
+
+
+
+
+  To separate the artifact reader to allow custom artifact reader
+  for manifest validation.
+
+- *(deployments)* Better default sort direction releases and images
+([MEN-9409](https://northerntech.atlassian.net/browse/MEN-9409)) ([e0f6a98](https://github.com/mendersoftware/mender-server-enterprise/commit/e0f6a98c672396d550c519d245f1bc3bc15ca51c))  by @frodeha
+
+
+
+
+- *(deployments)* Common find options for releases and manifests
+([MEN-9409](https://northerntech.atlassian.net/browse/MEN-9409)) ([99b2ffc](https://github.com/mendersoftware/mender-server-enterprise/commit/99b2ffc12c96c650e007aefbfd6d904907425e92))  by @frodeha
+
+
+
+
+- *(deployments)* Replace custom clients with OAS generated ones
+ ([9db76ca](https://github.com/mendersoftware/mender-server-enterprise/commit/9db76ca5ed0461bb9ad5ad6d64791f89ebaa8720))  by @alfrunes
+
+
+
+- *(deployments)* Migrate enterprise ISC to OAS generated clients
+([QA-1497](https://northerntech.atlassian.net/browse/QA-1497)) ([e56d7a1](https://github.com/mendersoftware/mender-server-enterprise/commit/e56d7a1c415bd29b9b4ec4f74931d843567d3933))  by @alfrunes
+
+
+
+
+
+  Migrated clients used for inter service communication to clients
+  generated from the OpenAPI specification.
+
+- *(deviceauth)* Change unlimited limit representation from 0 to -1
+([MEN-9535](https://northerntech.atlassian.net/browse/MEN-9535)) ([73da8fe](https://github.com/mendersoftware/mender-server-enterprise/commit/73da8febfbbfa98595d388054a4efc5575ada6ff))  by @LudvigAnderson
+
+
+
+
+
+
+- *(deviceauth)* Don't aggregate usage if device limit is zero
+([MEN-9471](https://northerntech.atlassian.net/browse/MEN-9471)) ([d5d2fae](https://github.com/mendersoftware/mender-server-enterprise/commit/d5d2faee1714f510a793f616ab25e30d6a961bad))  by @LudvigAnderson
+
+
+
+
+
+
+- *(gui)* Adopted basedrawer across applicable drawer instances
+ ([72d1fa0](https://github.com/mendersoftware/mender-server-enterprise/commit/72d1fa0cb9bb65f0641eba460af864e2f67cab4b))  by @mzedel
+
+
+
+- *(gui)* Extracted release filters into dedicated component
+ ([ee53ecf](https://github.com/mendersoftware/mender-server-enterprise/commit/ee53ecf7df06e0b920b307106f94efa10cba37b8))  by @mzedel
+
+
+
+- *(gui)* Extracted filter logic from releases component
+ ([e4e9f69](https://github.com/mendersoftware/mender-server-enterprise/commit/e4e9f69b229bcb89a21af5f153592ada7b2c75aa))  by @mzedel
+
+
+
+- *(gui)* Encapsulated release retrieval & refresh handling
+ ([205edf1](https://github.com/mendersoftware/mender-server-enterprise/commit/205edf1d57286ef62607705b82ffcb0073696c3b))  by @mzedel
+
+
+
+
+  - to allow clearer distinction between different software tabs & prevent data retrieval by hidden details tabs
+
+- *(gui)* Made use of manifest components in releases view
+ ([7963fbc](https://github.com/mendersoftware/mender-server-enterprise/commit/7963fbc51acafd305209357608b4c5414364b6fa))  by @mzedel
+
+
+
+- *(gui)* Dryed up software tabs definitions
+ ([f5679de](https://github.com/mendersoftware/mender-server-enterprise/commit/f5679def67f788e16cf55677586831e36d726049))  by @mzedel
+
+
+
+- *(gui)* Removed capitalization option as it won't be applicable
+ ([d48660a](https://github.com/mendersoftware/mender-server-enterprise/commit/d48660a67c95c8a4b2ab4a9d0365febc4dcd07be))  by @mzedel
+
+
+
+
+  -  due to css limitations on text-transforms: the `inline` class prevents this from ever working
+
+- *(pkg)* Move parsing of custom redis options to separate func
+ ([4fab88e](https://github.com/mendersoftware/mender-server-enterprise/commit/4fab88e60fd0107ca8eecd6ed68dd8e8229526c2))  by @alfrunes
+
+
+
+- *(tenantadm)* Use HubSpot client from common pkg
+([MEN-9460](https://northerntech.atlassian.net/browse/MEN-9460)) ([1b7c081](https://github.com/mendersoftware/mender-server-enterprise/commit/1b7c081b93cde25fa436e14818d8ea5ecb42e07f))  by @kjaskiewiczz
+
+
+
+
+- *(tenantadm)* Remove HubSpot client from tenantadm directory
+([MEN-9460](https://northerntech.atlassian.net/browse/MEN-9460)) ([c2a3990](https://github.com/mendersoftware/mender-server-enterprise/commit/c2a3990256a02ab8f3b8abca9d6c63a475c1b926))  by @kjaskiewiczz
+
+
+
+
+- *(tenantadm)* Change rate limits implementation in sync-tenants-v2 command
+([MEN-9513](https://northerntech.atlassian.net/browse/MEN-9513)) ([a8b7ed6](https://github.com/mendersoftware/mender-server-enterprise/commit/a8b7ed6c5e9bb9fb261abe8e92236bdf596bf682))  by @kjaskiewiczz
+
+
+
+
+
+  This PR replaces the `throttle-ms` option (which added a static sleep time
+  to every call in the sync-tenants command) with a simple `limit` option,
+  which restricts the number of tenants we synchronize with HubSpot per second.
+  
+  The motivation for this throttling is that for each tenant,
+  we make calls to internal and external services to gather additional information.
+  We want to avoid both spikes in our internal traffic and exhausting
+  request quotas for external services like Stripe.
+
+
+
+
+
+
+
 ## 4.2.0-saas.6 - 2026-04-08
 
 
