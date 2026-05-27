@@ -23,6 +23,8 @@ github: false
 
 ### 5.1.0 - 2026-03-09
 
+New changes in mender since 5.0.4:
+
 ##### Bug Fixes
 
 * Use /proc/cmdline for root device detection instead of stat in rootfs update module
@@ -198,6 +200,12 @@ _Released 02.17.2026_
 #### mender (5.0.4)
 
 New changes in mender since 5.0.3:
+
+##### Security fixes
+
+* Fixed CVE-2025-67903 - Signature verification bypass in the Mender Client.
+  See the official announcementfor more information:
+  [mender.io/blog/cve-2025-67903-signature-verification-bypass-in-mender-client](https://mender.io/blog/cve-2025-67903-signature-verification-bypass-in-mender-client)
 
 ##### Bug Fixes
 
