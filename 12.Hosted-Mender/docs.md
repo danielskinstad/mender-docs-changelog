@@ -7,6 +7,502 @@ shortcode-core:
 github: false
 ---
 
+## 4.2.0-saas.9 - 2026-05-27
+
+
+### Bug fixes
+
+
+- *(deployments)* Set default value for SettingMaxDeploymentArtifactSizeMicroDevices
+([MEN-9688](https://northerntech.atlassian.net/browse/MEN-9688)) ([c2d595e](https://github.com/mendersoftware/mender-server-enterprise/commit/c2d595e8fe100dac885917c3454baf0c70b995a6))  by @kjaskiewiczz
+
+
+
+
+- *(deployments)* Parse manifest tags as csv
+ ([7fd1c6c](https://github.com/mendersoftware/mender-server-enterprise/commit/7fd1c6c19560f7baf896f48c586c67d01f0e5b4b))  by @frodeha
+
+
+
+
+- *(deployments)* Validate release type before removing its artifact
+ ([a594dbc](https://github.com/mendersoftware/mender-server-enterprise/commit/a594dbccfcc588891bdeb4224db001c579e84d34))  by @bahaa-ghazal
+
+
+
+
+  Currently, we try to delete the artifact attached to a release before deleting the release itself.
+  If the name belongs to a manifest, it will delete the artifact without deleting the manifest.
+
+- *(deployments)* Omit empty tags when listing software tags
+ ([3b9731e](https://github.com/mendersoftware/mender-server-enterprise/commit/3b9731e60d7fd24796baafd47ae729cd6db2df98))  by @bahaa-ghazal
+
+
+
+- *(deployments)* Prevent manifest upload from exceeding tag limit
+ ([8afdf77](https://github.com/mendersoftware/mender-server-enterprise/commit/8afdf772ecd3cf079631fea731672c462c6b9af3))  by @alfrunes
+
+
+
+- *(deployments)* Set correct location header when generating manifests
+ ([62ed4f9](https://github.com/mendersoftware/mender-server-enterprise/commit/62ed4f9f73d3f66dd7d75469e1d79497f7175522))  by @frodeha
+
+
+
+
+- *(deviceconnect)* Improve error handling reaching session recording limit
+ ([1b097ed](https://github.com/mendersoftware/mender-server-enterprise/commit/1b097ed4d437e76b7b30167c07113bd2664a0d8a))  by @alfrunes
+
+
+
+
+  When reaching the limit for the session, the websocket connection is
+  closed instead of leaving it open and detached.
+
+- *(deviceconnect)* Mender commands regression after stream migration
+ ([a991a25](https://github.com/mendersoftware/mender-server-enterprise/commit/a991a258c0f6a4ba207c9d4a09178fbffeb24738))  by @alfrunes
+
+
+
+
+  Due to a duplicate implementation of the mender commands API for the
+  internal APIs, only the public APIs were migrated to use the new
+  connection oriented streams.
+
+- *(devicemonitor)* Added missing AlertDetail properties to oas
+ ([3420f2a](https://github.com/mendersoftware/mender-server-enterprise/commit/3420f2ad724941205795fc1f6198cf84aa2f9d05))  by @frodeha
+
+
+
+
+- *(gui)* Fixed an issue that prevented requiring confirmation on deployment creation
+ ([7820676](https://github.com/mendersoftware/mender-server-enterprise/commit/782067689f23fa7e9b98e9d4b32a15d472de1f47))  by @mzedel
+
+
+
+- *(pkg)* Masking error when checking for invalidated cache
+ ([8f8f718](https://github.com/mendersoftware/mender-server-enterprise/commit/8f8f71867469e4e86ef44636d26b94167b9fedf6))  by @alfrunes
+
+
+
+
+  When getting a value from the cache using the pkg/redis.GetCache, any
+  other error than redis.Nil is masked by ErrCacheInvalid making it appear
+  that the cache was invalidated on any other type of error.
+
+- *(pkg)* Hubspot: add missing property "trial expiration" to tenant model
+([MEN-9733](https://northerntech.atlassian.net/browse/MEN-9733)) ([e6a770d](https://github.com/mendersoftware/mender-server-enterprise/commit/e6a770d9de7ded180320c3461be465b0adfd6bb6))  by @kjaskiewiczz
+
+
+
+
+- *(pkg)* Modify hubspot client to ignore contacts with invalid email addresses
+([MEN-9732](https://northerntech.atlassian.net/browse/MEN-9732)) ([3b766a1](https://github.com/mendersoftware/mender-server-enterprise/commit/3b766a1a39cd8bec62d17376cf1adb7e124cf0c8))  by @kjaskiewiczz
+
+
+
+
+
+  This commit adds special handling for INVALID_EMAIL error from HubSpot.
+  The reason for that is that HubSpot has more strict email address
+  validation than our backend.
+  We will not synchronize users with email addresses that are considered
+  invalid by HubSpot.
+
+- *(useradm)* Require password before returning missing two-factor
+([MEN-9722](https://northerntech.atlassian.net/browse/MEN-9722)) ([ea20692](https://github.com/mendersoftware/mender-server-enterprise/commit/ea206922b767ade1e88b1997732b83fb4d9b76a5))  by @alfrunes
+
+
+
+
+
+  To disclose whether a user has two-factor enabled, it needs to first
+  enter the correct password to prevent user enumeration.
+
+- *(useradm)* Harden basic auth timing information
+ ([71f9424](https://github.com/mendersoftware/mender-server-enterprise/commit/71f942413b674bcdc924320b976ff9102200cf08))  by @alfrunes
+
+
+
+- *(useradm)* Allow ReadAuditLogs to access session playback
+([ME-660](https://northerntech.atlassian.net/browse/ME-660)) ([8ba2311](https://github.com/mendersoftware/mender-server-enterprise/commit/8ba2311876e08fcbb6a3b5d0644ecb73a47589b2))  by @LudvigAnderson
+
+
+
+
+
+
+- *(workflows)* Remove HTML version of security notifications
+([MEN-9662](https://northerntech.atlassian.net/browse/MEN-9662)) ([f628f4b](https://github.com/mendersoftware/mender-server-enterprise/commit/f628f4b4bb494092bab0a44c005cb47fde6b7596))  by @alfrunes
+
+
+
+
+- *(workflows)* Bump version of security e-mail workflows
+ ([2fc68d9](https://github.com/mendersoftware/mender-server-enterprise/commit/2fc68d9cfb6842b07717834591c6a7f5161d6e03))  by @frodeha
+
+
+
+
+
+  In f628f4b4bb494092bab0a44c005cb47fde6b7596 we removed the HTML version
+  of these security e-mail notifications. We need to also bump the version
+  of each workflow definition so they are updated in the database. Without
+  this, the workflows fail to execute as they're expecting the html
+  template to exist still.
+
+
+
+
+
+### Documentation
+
+
+- *(deployments)* Added OAS for list software tags alpha endpoint
+([MEN-9434](https://northerntech.atlassian.net/browse/MEN-9434)) ([f227825](https://github.com/mendersoftware/mender-server-enterprise/commit/f227825cd7049734999cd59601325c3e508bbcb4))  by @frodeha
+
+
+
+
+- *(deployments)* Added OAS for generate manifest alpha endpoint
+([MEN-9556](https://northerntech.atlassian.net/browse/MEN-9556)) ([c0fc772](https://github.com/mendersoftware/mender-server-enterprise/commit/c0fc772e6f4ef44a299ea09dfc91f0596ecc2ab2))  by @frodeha
+
+
+
+
+- *(deployments)* Remove invalid encoding from manifest upload request body
+ ([e269f60](https://github.com/mendersoftware/mender-server-enterprise/commit/e269f604f4fb6c7ab7b900522b65607fd325c86a))  by @frodeha
+
+
+
+
+- *(deployments)* Add API spec for `DELETE /manifests` endpoint
+([MEN-9555](https://northerntech.atlassian.net/browse/MEN-9555)) ([786c098](https://github.com/mendersoftware/mender-server-enterprise/commit/786c09874d17d4fb9fc5d8d65284bf1b167ef8e4))  by @bahaa-ghazal
+
+
+
+
+- *(deployments)* Add tag query to get manifests alpha endpoint
+([MEN-9434](https://northerntech.atlassian.net/browse/MEN-9434)) ([f028555](https://github.com/mendersoftware/mender-server-enterprise/commit/f0285554967f13cb3c9f812c470843592df77197))  by @frodeha
+
+
+
+
+- *(deployments)* Remove status code 402 from 'Explain Log' API
+([MEN-9673](https://northerntech.atlassian.net/browse/MEN-9673)) ([ac43a3e](https://github.com/mendersoftware/mender-server-enterprise/commit/ac43a3ec300eb4982be36823453a14f3055b3e55))  by @alfrunes
+
+
+
+
+- *(deployments)* Add `GET /software` endpoint for listing softwares
+([MEN-9607](https://northerntech.atlassian.net/browse/MEN-9607)) ([8fa9bec](https://github.com/mendersoftware/mender-server-enterprise/commit/8fa9bec4f5ee5e0ae751d75472d1abf7f41f1f07))  by @bahaa-ghazal
+
+
+
+
+- *(deployments)* API specification for updating manifest metadata
+([MEN-9554](https://northerntech.atlassian.net/browse/MEN-9554)) ([0737096](https://github.com/mendersoftware/mender-server-enterprise/commit/073709632c20c3b8ddf7374d247206feeba488f3))  by @alfrunes
+
+
+
+
+- *(deployments)* Align internal deploy configuration with reality
+ ([f748010](https://github.com/mendersoftware/mender-server-enterprise/commit/f748010789ce21a3308fe9fc2a7a59a5861ab79e))  by @alfrunes
+
+
+
+- *(devicemonitor)* Document missing alert properties
+([QA-1502](https://northerntech.atlassian.net/browse/QA-1502)) ([1e1f193](https://github.com/mendersoftware/mender-server-enterprise/commit/1e1f193c1047b239fbfd651feae7d563bb778cfe))  by @frodeha
+
+
+
+
+- *(tenantadm)* Add device_limits to create child tenant request body
+([MEN-9571](https://northerntech.atlassian.net/browse/MEN-9571)) ([687c0b7](https://github.com/mendersoftware/mender-server-enterprise/commit/687c0b7b0b2de77922bfd33b25158b224f389617))  by @frodeha
+
+
+
+
+
+
+
+
+### Features
+
+
+- *(create-artifact-worker)* Added new command for generating manifests
+([MEN-9556](https://northerntech.atlassian.net/browse/MEN-9556)) ([e4e29c9](https://github.com/mendersoftware/mender-server-enterprise/commit/e4e29c9d7ebf9e3e363d1a32d68de5a8b0389fe9))  by @frodeha
+
+
+
+
+- *(deployments)* Add endpoint for deleting manifests
+([MEN-9555](https://northerntech.atlassian.net/browse/MEN-9555)) ([614d1b4](https://github.com/mendersoftware/mender-server-enterprise/commit/614d1b4416c86809beb1e2b91f7a305e7271cbed))  by @bahaa-ghazal
+
+
+
+
+- *(deployments)* Implemented get software tags alpha endpoint
+([MEN-9434](https://northerntech.atlassian.net/browse/MEN-9434)) ([498bc6d](https://github.com/mendersoftware/mender-server-enterprise/commit/498bc6d6aac4aae977ca6ba0b1506b62f888253f))  by @frodeha
+
+
+
+
+- *(deployments)* Endpoint for updating tags and notes of a Manifest
+([MEN-9554](https://northerntech.atlassian.net/browse/MEN-9554)) ([c1f8944](https://github.com/mendersoftware/mender-server-enterprise/commit/c1f89443588acd58a61a746e41a87b37337d82dd))  by @alfrunes
+
+
+
+
+
+  A new PATCH API for a Manifest resource allows updating the notes and
+  tags of a manifest.
+
+- *(deployments)* Added implementation for generate manifest endpoint
+([MEN-9556](https://northerntech.atlassian.net/browse/MEN-9556)) ([088a528](https://github.com/mendersoftware/mender-server-enterprise/commit/088a52885ff39420da23f1d3c405bd1a1091d601))  by @frodeha
+
+
+
+
+- *(deployments)* Implement endpoint for listing software
+([MEN-9607](https://northerntech.atlassian.net/browse/MEN-9607)) ([5b645f1](https://github.com/mendersoftware/mender-server-enterprise/commit/5b645f161b3a5e6487f1dd1bda29593070aadf53))  by @bahaa-ghazal
+
+
+
+
+- *(deviceconnect)* Add reliable transmission control over NATS sessions
+([MEN-4595](https://northerntech.atlassian.net/browse/MEN-4595)) ([343308f](https://github.com/mendersoftware/mender-server-enterprise/commit/343308fb4fb3610cb73e45d0d052a477dcea2abd))  by @alfrunes
+
+
+
+
+
+  To remove the end-to-end transmission control bottleneck from the protocol,
+  we need to fix the unreliable link.
+
+- *(gui)* Added Manifest creation Drawer
+([MEN-9436](https://northerntech.atlassian.net/browse/MEN-9436)) ([0e0095a](https://github.com/mendersoftware/mender-server-enterprise/commit/0e0095a9ea4ed904e64e9cc8dc7bb40279f8ef66))  by @mineralsfree
+
+
+
+
+- *(gui)* No longer hide rbac settings for users capable of managing rbac
+ ([16ecc24](https://github.com/mendersoftware/mender-server-enterprise/commit/16ecc2470360fc7711e7a7a79679cb9494c31917))  by @mzedel
+
+
+
+- *(gui)* Added manifests removal functionality
+([MEN-9609](https://northerntech.atlassian.net/browse/MEN-9609)) ([bb99a1f](https://github.com/mendersoftware/mender-server-enterprise/commit/bb99a1f2cc9b288345bef8a3239fd696fdcba9e2))  by @mineralsfree
+
+
+
+
+- *(useradm)* Link an oauth2 provider via POST /oauth2/link
+([MEN-9257](https://northerntech.atlassian.net/browse/MEN-9257)) ([0561444](https://github.com/mendersoftware/mender-server-enterprise/commit/0561444a21e0dffa20ac61519bc477de6c778381))  by @merlin-northern
+
+
+
+
+
+
+- *(useradm)* Added config for e-mail domains that is auto verified
+ ([977bbbc](https://github.com/mendersoftware/mender-server-enterprise/commit/977bbbc9848b8850e2520cd5f860543bedf91fad))  by @frodeha
+
+
+
+
+
+  Added a new configuration option that instructs useradm to
+  automatically verify users created with an e-mail address
+  from one of the domains in the list. This option is intended
+  for use in test and/or demo environments where the use of users
+  with fake e-mail addresses is common/useful.
+  
+  The use of this configuration option is not adviced outside of
+  such environments and by default no domains are trusted in this
+  way.
+
+- *(useradm)* Verify users email address when they successfully use a password reset link
+([MEN-9156](https://northerntech.atlassian.net/browse/MEN-9156)) ([af0cd61](https://github.com/mendersoftware/mender-server-enterprise/commit/af0cd61f00143b445597222c366565c95db1b601))  by @kjaskiewiczz
+
+
+
+
+- *(workflows)* Added config option for suppressing e-mail sending
+ ([d4eef18](https://github.com/mendersoftware/mender-server-enterprise/commit/d4eef18b57030693b4ce612343e4bbf7478b195d))  by @frodeha
+
+
+
+
+
+  Added a configuration option in workflows that instructs the server
+  to not send e-mails to configured domains. This is useful in test/demo
+  environments where the use of fake e-mails (which will bounce and affect
+  e-mail reputation) is common.
+  
+  By default no domains are suppressed.
+
+
+
+
+
+### Refactor
+
+
+- *(deployments)* Replace get release tags with get software tags
+ ([7f32320](https://github.com/mendersoftware/mender-server-enterprise/commit/7f323206b002110fdd79ff476870fc35c630534b))  by @frodeha
+
+
+
+
+- *(deviceconfig)* Migrate internal clients to use OAS client
+ ([7cb8f66](https://github.com/mendersoftware/mender-server-enterprise/commit/7cb8f66843cba0c740351bed191ca211c191dc6c))  by @alfrunes
+
+
+
+- *(deviceconnect)* Refactor playback to use connection oriented stream
+ ([0f515e5](https://github.com/mendersoftware/mender-server-enterprise/commit/0f515e5578c0535be5435024d1df0ed085eec7c2))  by @alfrunes
+
+
+
+- *(deviceconnect)* Consolidate error handling and ws close frame
+ ([fa2e24e](https://github.com/mendersoftware/mender-server-enterprise/commit/fa2e24e91fbbacd3a55e3d04ba7340a43b32e52f))  by @alfrunes
+
+
+
+- *(deviceconnect)* Mender command APIs to use connection oriented streams
+ ([0ecf9ed](https://github.com/mendersoftware/mender-server-enterprise/commit/0ecf9ed134961b85df3f754857f55d96af4694d2))  by @alfrunes
+
+
+
+- *(deviceconnect)* File transfer to use connection oriented NATS transport
+([MEN-4595](https://northerntech.atlassian.net/browse/MEN-4595)) ([da9ecda](https://github.com/mendersoftware/mender-server-enterprise/commit/da9ecda360a09cd11ddb5ecb9711fa6ef32a039a))  by @alfrunes
+
+
+
+
+- *(gui)* Add rhf foundation to deployment creation
+ ([33a70df](https://github.com/mendersoftware/mender-server-enterprise/commit/33a70df32769b4f4606177b1b2b2c0985f9cb9d6))  by @mzedel
+
+
+
+
+  - as an intermediate step to sync form values back to the parent component for location param sync
+
+- *(gui)* Migrate checkbox only sections to rhf compatible
+ ([3c61aee](https://github.com/mendersoftware/mender-server-enterprise/commit/3c61aee7f71b2e0464a6b9a84a28e456bd6a569f))  by @mzedel
+
+
+
+- *(gui)* Migrate deployment retries to numberinput/  rhf
+ ([fd6db48](https://github.com/mendersoftware/mender-server-enterprise/commit/fd6db48fd03a606679ce81cf8da8982ffe94783a))  by @mzedel
+
+
+
+
+  - attempts vs retry conversion now happens on submit
+
+- *(gui)* Let deployment device limit rely on numberinput/ rhf
+ ([9004f01](https://github.com/mendersoftware/mender-server-enterprise/commit/9004f015bc077a994dd66aa9ec9eb6e2a57170b8))  by @mzedel
+
+
+
+- *(gui)* Migrate synced deployments to rhf value tracking too
+ ([0116371](https://github.com/mendersoftware/mender-server-enterprise/commit/011637193868015b445925d730af5232c5f59642))  by @mzedel
+
+
+
+- *(gui)* Track deployment scheduling with rhf too
+ ([63cf60e](https://github.com/mendersoftware/mender-server-enterprise/commit/63cf60e4c2963fdcf74f8f238eeec406ddddb32a))  by @mzedel
+
+
+
+- *(gui)* Migrate target device + proxy deployment release selection to rhf
+ ([9245535](https://github.com/mendersoftware/mender-server-enterprise/commit/92455355b91b52b03335074c7f471980ddaae5f2))  by @mzedel
+
+
+
+- *(gui)* Prepared deployment phase config for design changes
+ ([71dbadc](https://github.com/mendersoftware/mender-server-enterprise/commit/71dbadcd534795c60f8077ede72ceecac4cb43ed))  by @mzedel
+
+
+
+- *(gui)* Remove deployment object reliance for rhf
+ ([48abeb2](https://github.com/mendersoftware/mender-server-enterprise/commit/48abeb22b098fd76cedad7e5630009864ef8a935))  by @mzedel
+
+
+
+
+  - non-form native deployment information is extracted to a separate hook to limit data sync efforts, at the cost of potential extra requests
+
+- *(gui)* Unified quick actions to use reusable component for consistent styling
+ ([c8248b9](https://github.com/mendersoftware/mender-server-enterprise/commit/c8248b91ad6d3947f28a0385b2a1a3c721e118ac))  by @mzedel
+
+
+
+- *(inventory)* Migrate internal clients to OAS generated client
+([QA-1502](https://northerntech.atlassian.net/browse/QA-1502)) ([cac46d2](https://github.com/mendersoftware/mender-server-enterprise/commit/cac46d21ad8af80102d42ab2eaa7aa5f5b47b742))  by @frodeha
+
+
+
+
+- *(inventory)* Remove devicemonitor client
+([QA-1502](https://northerntech.atlassian.net/browse/QA-1502)) ([580e19b](https://github.com/mendersoftware/mender-server-enterprise/commit/580e19be52defde359502066f8f21513a9fa0dec))  by @frodeha
+
+
+
+
+
+  Devicemonitor is not a supported opensource feature. As part of an
+  ongoing migration effort to use autogenerated internal clients we are
+  replacing handwritten clients wherever possible. Since devicemonitor is
+  not a supported opensource feature, the autogenerated client in opensource
+  does not include the devicemonitor API. Therefore we're simply removing
+  the handwritten one here.
+  
+  We're leaving the inventory HTTP APIs that used the client previously as
+  to not introduce API breakage, but they will always find 0 alerts,
+  effectively making them into no-ops here in opensource.
+
+- *(iot-manager)* Replace internal clients with OpenAPI generated
+([QA-1511](https://northerntech.atlassian.net/browse/QA-1511)) ([9430289](https://github.com/mendersoftware/mender-server-enterprise/commit/9430289becbe8af513167f27b3a860f8aa1fc848))  by @alfrunes
+
+
+
+
+- *(useradm)* Lower cyclometic complexity and trim redundant email state
+ ([0476529](https://github.com/mendersoftware/mender-server-enterprise/commit/0476529e20dd9f7edd0da1244c4806d982abbe0e))  by @alfrunes
+
+
+
+
+
+
+
+### Revert
+
+
+- "fix(deployments): Put log explain endpoint behind paywall"
+([MEN-9673](https://northerntech.atlassian.net/browse/MEN-9673)) ([1a1d044](https://github.com/mendersoftware/mender-server-enterprise/commit/1a1d044152027273cb233438af9cdd049045b29d))  by @alfrunes
+
+
+
+
+
+  This reverts commit 438bc53a3665f3a74f9df04b0d69738ad3b5173d.
+- "refactor(deployments): replace get release tags with get software tags"
+ ([0d42895](https://github.com/mendersoftware/mender-server-enterprise/commit/0d42895baa4c6cba39f25bc1367f4a879ec17db6))  by @alfrunes
+
+
+
+
+  This reverts commit 7f323206b002110fdd79ff476870fc35c630534b.
+
+
+
+
+
+
 ## 4.2.0-saas.8 - 2026-05-07
 
 
