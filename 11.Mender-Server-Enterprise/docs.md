@@ -10,6 +10,15 @@ github: false
 ## 4.1.1 - 2026-04-07
 
 
+### Security fixes
+
+- Fixed CVE-2026-49009 - Improper input sanitization in Mender Server
+  See the official announcement for more information:
+  [mender.io/blog/cve-2026-49009-cve-2026-33552-input-sanitization-and-access-control-issues-in-mender-server](https://mender.io/blog/cve-2026-49009-cve-2026-33552-input-sanitization-and-access-control-issues-in-mender-server)
+- Fixed CVE-2026-33552 - Improper access control in Device Group RBAC
+  See the official announcement for more information:
+  [mender.io/blog/cve-2026-49009-cve-2026-33552-input-sanitization-and-access-control-issues-in-mender-server](https://mender.io/blog/cve-2026-49009-cve-2026-33552-input-sanitization-and-access-control-issues-in-mender-server)
+
 ### Bug fixes
 
 
@@ -112,6 +121,16 @@ github: false
 
 
 ## 4.0.2 - 2026-04-07
+
+
+### Security fixes
+
+- Fixed CVE-2026-49009 - Improper input sanitization in Mender Server
+  See the official announcement for more information:
+  [mender.io/blog/cve-2026-49009-cve-2026-33552-input-sanitization-and-access-control-issues-in-mender-server](https://mender.io/blog/cve-2026-49009-cve-2026-33552-input-sanitization-and-access-control-issues-in-mender-server)
+- Fixed CVE-2026-33552 - Improper access control in Device Group RBAC
+  See the official announcement for more information:
+  [mender.io/blog/cve-2026-49009-cve-2026-33552-input-sanitization-and-access-control-issues-in-mender-server](https://mender.io/blog/cve-2026-49009-cve-2026-33552-input-sanitization-and-access-control-issues-in-mender-server)
 
 
 ### Bug fixes
