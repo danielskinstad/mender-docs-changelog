@@ -7,6 +7,121 @@ shortcode-core:
 github: false
 ---
 
+## 4.2.0-saas.10 - 2026-05-29
+
+
+### Bug fixes
+
+
+- *(deployments)* Remove shadowing of ReleaseBase `kind` property
+([MEN-9753](https://northerntech.atlassian.net/browse/MEN-9753)) ([7eb0476](https://github.com/mendersoftware/mender-server-enterprise/commit/7eb0476468069fd7370d0f0ad80bebe718f7051e))  by @frodeha
+
+
+
+
+- *(gui)* Ensured manifest actions have a reasonable label when manifest details are shown
+ ([edf5adf](https://github.com/mendersoftware/mender-server-enterprise/commit/edf5adf35253c669047328405a8ab1e339616016))  by @mzedel
+
+
+
+- *(gui)* Unwraped the plan upgrade request to handle the errors correctly
+ ([37c2e9f](https://github.com/mendersoftware/mender-server-enterprise/commit/37c2e9f91d6f1396de9c33527af2838196f66759))  by @mineralsfree
+
+
+
+- *(gui)* Ensured internal links can be opened in a new tab too
+ ([b7b9b4e](https://github.com/mendersoftware/mender-server-enterprise/commit/b7b9b4e2f68c9beefca9308ede9129f1ba0caa38))  by @mzedel
+
+
+
+- *(inventory)* Temporarily allow boolean attribute values internally
+([ME-670](https://northerntech.atlassian.net/browse/ME-670)) ([6571a86](https://github.com/mendersoftware/mender-server-enterprise/commit/6571a865a7708f57b84abbdf67392046aef88049))  by @frodeha
+
+
+
+
+- *(pkg)* Allow unknown fields in responses to pkg/api/client
+ ([ab878ad](https://github.com/mendersoftware/mender-server-enterprise/commit/ab878ade79a363b8485b707bf5c3d6c72ae1b274))  by @frodeha
+
+
+
+
+
+
+
+
+### Documentation
+
+
+- *(deployments)* Document tag filtering in get software alpha endpoint
+([MEN-9607](https://northerntech.atlassian.net/browse/MEN-9607)) ([e007b93](https://github.com/mendersoftware/mender-server-enterprise/commit/e007b9315a381d0f984d014ccf9ef8fa3c9cc101))  by @frodeha
+
+
+
+
+
+
+
+
+### Features
+
+
+- *(deployments)* Added tag filtering in get software alpha endpoint
+([MEN-9607](https://northerntech.atlassian.net/browse/MEN-9607)) ([9821532](https://github.com/mendersoftware/mender-server-enterprise/commit/9821532e849472bcdd934dd715fb58ddc6c32ad9))  by @frodeha
+
+
+
+
+- *(gui)* Added tag filtering on manifests list
+([MEN-9560](https://northerntech.atlassian.net/browse/MEN-9560)) ([b88baf5](https://github.com/mendersoftware/mender-server-enterprise/commit/b88baf54e3f29b0d9cb3803ee03293779c128b21))  by @mzedel
+
+
+
+
+
+
+
+
+### Refactor
+
+
+- *(deviceconnect)* Unify session initialization across APIs
+ ([fee796e](https://github.com/mendersoftware/mender-server-enterprise/commit/fee796e10069edddbe41d503bd160af7207c37ab))  by @alfrunes
+
+
+
+- *(deviceconnect)* Replace workflows client with OAS generated client
+([QA-1500](https://northerntech.atlassian.net/browse/QA-1500)) ([224cfae](https://github.com/mendersoftware/mender-server-enterprise/commit/224cfae1b4c8678f7bf55fe15a8c57875980fc83))  by @alfrunes
+
+
+
+
+- *(gui)* Aligned multiline text input w/ updated design & usage
+([MEN-9730](https://northerntech.atlassian.net/browse/MEN-9730)) ([9d42833](https://github.com/mendersoftware/mender-server-enterprise/commit/9d428339db1f8ace159a426efd81939ab281db11))  by @mzedel
+
+
+
+
+
+
+
+
+### Revert
+
+
+- Remove workflows and audit logs from open-source
+ ([b487d4c](https://github.com/mendersoftware/mender-server-enterprise/commit/b487d4c7d87f4fdeb0c0a5ee6bc40f6db37ee849))  by @alfrunes
+
+
+
+
+  This reverts commit f0fa5736d1579bd8616488eb92fc3dea22b9b768.
+
+
+
+
+
+
 ## 4.2.0-saas.9 - 2026-05-27
 
 
