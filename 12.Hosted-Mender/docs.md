@@ -7,6 +7,486 @@ shortcode-core:
 github: false
 ---
 
+## 4.2.0-saas.11 - 2026-06-17
+
+
+### Bug fixes
+
+
+- *(deployments)* Manifest component update order is in the range 1-100
+ ([d72434b](https://github.com/mendersoftware/mender-server-enterprise/commit/d72434b49ed33d7a66995b4a25d9a634c63b1395))  by @frodeha
+
+
+
+
+- *(deployments)* Support clearing manifest tags and/or notes
+([MEN-9846](https://northerntech.atlassian.net/browse/MEN-9846)) ([e0a6631](https://github.com/mendersoftware/mender-server-enterprise/commit/e0a6631577b5e1a03217cac0887f7c279dab252e))  by @frodeha
+
+
+
+
+- *(deployments)* Remove release from tag validation error
+([MEN-9845](https://northerntech.atlassian.net/browse/MEN-9845)) ([41ea077](https://github.com/mendersoftware/mender-server-enterprise/commit/41ea077e5cc8cb202ca11c5d194a162d610a37b4))  by @frodeha
+
+
+
+
+- *(deployments)* Encode generate manifest location header
+([MEN-9855](https://northerntech.atlassian.net/browse/MEN-9855)) ([f31de80](https://github.com/mendersoftware/mender-server-enterprise/commit/f31de809302e435eb912d8bb4a9ab647f5e3ed44))  by @frodeha
+
+
+
+
+- *(deviceauth)* Check auth request signature before processing request
+ ([b823045](https://github.com/mendersoftware/mender-server-enterprise/commit/b823045ec245776508b7918b21c54bcf6c7a6970))  by @alfrunes
+
+
+
+
+  Reverts 9a371de75681ddf95990bae4300e456331133441 from
+  https://github.com/mendersoftware/deviceauth
+
+- *(deviceauth)* `maintenance propagate-inventory` sync tier and flags
+ ([1642b97](https://github.com/mendersoftware/mender-server-enterprise/commit/1642b97c022cc3bd850f81694b64f4946d84b6e8))  by @alfrunes
+
+
+
+
+
+  The command to sync deviceauth data to inventory service also propagates
+  the tier and test_device flags.
+
+- *(deviceconnect)* Properly handle stream close errors
+ ([6083411](https://github.com/mendersoftware/mender-server-enterprise/commit/6083411c2df4dccd80e623f3f9f51bb9cd291dec))  by @alfrunes
+
+
+
+- *(deviceconnect)* Double response on file transfer error handling
+ ([1018b88](https://github.com/mendersoftware/mender-server-enterprise/commit/1018b882d29dd903515e0902f75adb4a7706f6ba))  by @alfrunes
+
+
+
+- *(deviceconnect)* Ensure mutual exclusive access to ws connection
+ ([c532bbe](https://github.com/mendersoftware/mender-server-enterprise/commit/c532bbe357f89c682520270893c9ad42a798c7d1))  by @alfrunes
+
+
+
+- *(deviceconnect)* Fixed an issue that would break file transfers w/ a device
+ ([ca871b9](https://github.com/mendersoftware/mender-server-enterprise/commit/ca871b9568d2729385351ff7561ffc00460c9cf1))  by @mzedel
+
+
+
+
+  this seems due to an always enabled throttling even if throttling isn't enabled
+
+- *(devicemonitor)* Set device group in alert emails correctly
+([QA-1501](https://northerntech.atlassian.net/browse/QA-1501)) ([c34b271](https://github.com/mendersoftware/mender-server-enterprise/commit/c34b2719d5ac0bafcb0fa950b0bce48251f94301))  by @frodeha
+
+
+
+
+- *(gui)* Simplified version information handling to rely on server build time info only
+ ([df99594](https://github.com/mendersoftware/mender-server-enterprise/commit/df99594d20a28a47105c4046f7c46599add5e8d1))  by @mzedel
+
+
+
+
+  - more granular version info was removed without replacement
+
+- *(gui)* Reset filtering state when switching groups
+([ME-664](https://northerntech.atlassian.net/browse/ME-664)) ([6dc390b](https://github.com/mendersoftware/mender-server-enterprise/commit/6dc390b4d687495adf40e3a938f94217acd6b88c))  by @mineralsfree
+
+
+
+
+  + reset when selecting tier, status
+  Ticket: ME-664
+
+- *(gui)* Let manifests always point out missing releases when showing or editing their details
+([MEN-9838](https://northerntech.atlassian.net/browse/MEN-9838)) ([a163920](https://github.com/mendersoftware/mender-server-enterprise/commit/a1639200f65e213c9b9476558c6e17e494d4c202))  by @mzedel
+
+
+
+
+- *(gui)* Ensured manifest filter inputs are only usable for users on the required plan
+([MEN-9851](https://northerntech.atlassian.net/browse/MEN-9851)) ([b8a7bb0](https://github.com/mendersoftware/mender-server-enterprise/commit/b8a7bb0ac77e16ec2d034c26518c22848b3ba535))  by @mzedel
+
+
+
+
+- *(gui)* Ensured manifests can be linked to directly
+([MEN-9840](https://northerntech.atlassian.net/browse/MEN-9840)) ([0341e2e](https://github.com/mendersoftware/mender-server-enterprise/commit/0341e2ebb74da86972c81da7c7ece05dfe08f513))  by @mzedel
+
+
+
+
+
+  only releases are supposed to be referenced via the browser path, manifests & delta jobs via an id query param
+
+- *(gui)* Ensured tags & device types don't contain whitespace
+([MEN-9835](https://northerntech.atlassian.net/browse/MEN-9835)) ([402f6c9](https://github.com/mendersoftware/mender-server-enterprise/commit/402f6c9a4dfc4378df629f8ee6a9708f3d529c4a))  by @mzedel
+
+
+
+
+
+  to align w/ backend & client expectations
+
+- *(gui)* Let tags etc. no longer appear editable when they are only rendered as data
+([MEN-9852](https://northerntech.atlassian.net/browse/MEN-9852)) ([f7e82e5](https://github.com/mendersoftware/mender-server-enterprise/commit/f7e82e55c277d6803dddf1a938b1c9887cc308f3))  by @mzedel
+
+
+
+
+- *(gui)* Ensured manifest handles multi document yaml imports properly
+([MEN-9836](https://northerntech.atlassian.net/browse/MEN-9836)) ([2cbc612](https://github.com/mendersoftware/mender-server-enterprise/commit/2cbc6128df40e6410a06dd4ae3ae32bda2087bc4))  by @mzedel
+
+
+
+
+
+  since there's no clear handling of such a scenario the user will only get informed
+
+- *(gui)* Aligned yaml validation further w/ backend expectations
+ ([7053a24](https://github.com/mendersoftware/mender-server-enterprise/commit/7053a24f8fdbfa42a9b6f58f403e6ee6a718ca47))  by @mzedel
+
+
+
+- *(pkg)* Modify hubspot client to better handle invalid email addresses
+([MEN-9786](https://northerntech.atlassian.net/browse/MEN-9786)) ([df8dc87](https://github.com/mendersoftware/mender-server-enterprise/commit/df8dc87d4b6038cd6a2c1cbf2e37fcea79e0a7fc))  by @kjaskiewiczz
+
+
+
+
+- *(tenantadm)* Set "NT Last Sync" when synchronizing tenants with HubSpot
+([MEN-9785](https://northerntech.atlassian.net/browse/MEN-9785)) ([aff6bbf](https://github.com/mendersoftware/mender-server-enterprise/commit/aff6bbfd83f28397f148717cc5e7a04db9f7d62d))  by @kjaskiewiczz
+
+
+
+
+- *(useradm)* Allow users with oauth2 SSO to trigger password reset
+([MEN-9691](https://northerntech.atlassian.net/browse/MEN-9691)) ([3d3a0f4](https://github.com/mendersoftware/mender-server-enterprise/commit/3d3a0f43fc08752902c2641756578c26b7cdf6d6))  by @alfrunes
+
+
+
+
+- *(useradm)* Assigning password always overwrite current credentials
+([MEN-9691](https://northerntech.atlassian.net/browse/MEN-9691)) ([bdcc420](https://github.com/mendersoftware/mender-server-enterprise/commit/bdcc42055e050301fa8434e6997363bf9c59b88e))  by @alfrunes
+
+
+
+
+- *(useradm)* Lock password reset to current state of user
+([MEN-9691](https://northerntech.atlassian.net/browse/MEN-9691)) ([19b8b89](https://github.com/mendersoftware/mender-server-enterprise/commit/19b8b89cbf74677cdd4fb05d4857f3966c3b9c67))  by @alfrunes
+
+
+
+
+
+  Invalidates issued reset links once one request is completed.
+
+- *(workflows)* Expand email variables before suppression check
+([MEN-9866](https://northerntech.atlassian.net/browse/MEN-9866)) ([fae821c](https://github.com/mendersoftware/mender-server-enterprise/commit/fae821c3c545164e702ed6d76ff1b35cda620fb5))  by @frodeha
+
+
+
+
+
+
+
+
+### Documentation
+
+
+- *(auditlogs)* Add actions: `password_change` and `auth_method_change`
+ ([ae6d751](https://github.com/mendersoftware/mender-server-enterprise/commit/ae6d75125a0481a5793aeff9c5f3cce2fdf80f45))  by @alfrunes
+
+
+
+- *(deployments)* Added compatible_types to list software endpoint
+ ([67469a9](https://github.com/mendersoftware/mender-server-enterprise/commit/67469a9a664bd215ae5ff202139520cc3004924e))  by @frodeha
+
+
+
+
+- *(deviceauth)* Add API documentation for assigning device flags
+([MEN-9575](https://northerntech.atlassian.net/browse/MEN-9575)) ([16ca6cf](https://github.com/mendersoftware/mender-server-enterprise/commit/16ca6cffa2aa813b2f6f9af4bcd3c62b62592263))  by @alfrunes
+
+
+
+
+- *(tenantadm)* Added OAS for upgrade tenant subscription endpoint
+([QA-1513](https://northerntech.atlassian.net/browse/QA-1513)) ([814064c](https://github.com/mendersoftware/mender-server-enterprise/commit/814064c7d4b61ef91874884e354fba5162cccb2e))  by @frodeha
+
+
+
+
+
+
+
+
+### Features
+
+
+- *(admin-panel)* Move admin-panel to mender-server-enterprise
+([MEN-7864](https://northerntech.atlassian.net/browse/MEN-7864)) ([1aa25ea](https://github.com/mendersoftware/mender-server-enterprise/commit/1aa25ea2af361d563d44c43ffed04435a8701b67))  by @alfrunes
+
+
+
+
+- *(deployments)* Added compatible_types to software
+ ([589b53b](https://github.com/mendersoftware/mender-server-enterprise/commit/589b53bf2708fc485c4c137a9fb09f4a7b1ddb44))  by @frodeha
+
+
+
+
+- *(deviceauth)* Add feature flag configuration `features.device_flags`
+([MEN-9575](https://northerntech.atlassian.net/browse/MEN-9575)) ([c055845](https://github.com/mendersoftware/mender-server-enterprise/commit/c05584513bb17d1c6c26e9f8645595795421aae4))  by @alfrunes
+
+
+
+
+- *(deviceauth)* New API to set device flags
+([MEN-9575](https://northerntech.atlassian.net/browse/MEN-9575)) ([8b339ca](https://github.com/mendersoftware/mender-server-enterprise/commit/8b339ca26d4b700a0d402547a9cc4ed56494f1f1))  by @alfrunes
+
+
+
+
+
+
+  The new API to assign device flags allows flagging devices as test
+  devices which has more generous polling rate limits.
+
+- *(deviceauth)* Accepting devices as trial automatically assign test_device
+([MEN-9576](https://northerntech.atlassian.net/browse/MEN-9576)) ([4935fce](https://github.com/mendersoftware/mender-server-enterprise/commit/4935fce4cf90006d0a2dc9f4fcf58d5787dc8746))  by @alfrunes
+
+
+
+
+
+  By default newly accepted devices for trial accounts are marked as test
+  devices to allow frequent polling for a more seamless on-boarding
+  experience.
+
+- *(deviceconnect)* Bandwidth control over device connections
+ ([8e998c7](https://github.com/mendersoftware/mender-server-enterprise/commit/8e998c7911882e52739768f1adaf869c5cb8bb0a))  by @alfrunes
+
+
+
+
+  Added a new set of configuration to control the bandwidth for devices:
+  ```yaml
+  bandlimit:
+    # Enable bandlimit control (disabled by default)
+    enable: false
+    # Control the bandwidth rate at which a device can send and receive data
+    devices:
+      # Template expression for grouping band limits.
+      group_expression: "{{.Identity.Plan}}"
+      # Named bandlimit groups, the value is a float64 with the number of bytes per second.
+      groups:
+        enterprise: 10e6  # 10 MB/s
+        professional: 5e6 #  5 MB/s
+      # The default bandlimit (bytes per second) if no group matches.
+      default: 100e3 # 100 KB/s
+  ```
+
+- *(gui)* Enabeld manifest notes and tags editing
+([MEN-9604](https://northerntech.atlassian.net/browse/MEN-9604)) ([e4e09b9](https://github.com/mendersoftware/mender-server-enterprise/commit/e4e09b93ddaec00f2b0e2c1394542256d067edc9))  by @mzedel
+
+
+
+
+- *(gui)* Let non-existent manifest component be visually different
+([MEN-9669](https://northerntech.atlassian.net/browse/MEN-9669)) ([458be57](https://github.com/mendersoftware/mender-server-enterprise/commit/458be57345595697ccaac795270980a403ef3863))  by @mzedel
+
+
+
+
+- *(gui)* Added an unlink Oauth button in profile settings
+([MEN-9258](https://northerntech.atlassian.net/browse/MEN-9258)) ([90b1902](https://github.com/mendersoftware/mender-server-enterprise/commit/90b190251a55e6f5f641f0afd0d70cab7f9ef829))  by @mineralsfree
+
+
+
+
+- *(gui)* Added create from copy support for manifest upload
+([MEN-9558](https://northerntech.atlassian.net/browse/MEN-9558)) ([9dde0dc](https://github.com/mendersoftware/mender-server-enterprise/commit/9dde0dcb97de406b58be370b7a90f4494dc43be7))  by @mineralsfree
+
+
+
+
+- *(useradm)* Audit log and notification email completing password reset
+([MEN-9781](https://northerntech.atlassian.net/browse/MEN-9781)) ([f9c4f2c](https://github.com/mendersoftware/mender-server-enterprise/commit/f9c4f2c829d95562b0d7805f4349e9ec1096c104))  by @alfrunes
+
+
+
+
+
+  When completing password reset, the user gets an email notification and
+  an audit log is recorded. If the user completes password reset and
+  changes authentication method, this is reflected in the audit log action
+  and the security notification.
+  Instructions on how to restore (link) the OAuth2 method is also included
+  in the email template.
+
+- *(useradm)* Audit log and email notification when linking OAuth2 SSO
+([MEN-9716](https://northerntech.atlassian.net/browse/MEN-9716)) ([00ad363](https://github.com/mendersoftware/mender-server-enterprise/commit/00ad3635346c45d7db00e2c64cb19e070420d469))  by @alfrunes
+
+
+
+
+
+  When successfully linking a single sign-on method to the account, an
+  audit log and a user notification informs about the authentication
+  method change.
+
+- *(workflows)* Add 'email_suppression_recipients' setting
+([MEN-9866](https://northerntech.atlassian.net/browse/MEN-9866)) ([4b0c18e](https://github.com/mendersoftware/mender-server-enterprise/commit/4b0c18e19423a958a5b2775f8107de87b97a6fee))  by @frodeha
+
+
+
+
+
+
+
+
+### Refactor
+
+
+- *(devicemonitor)* Replace client with OpenAPI generated
+([QA-1501](https://northerntech.atlassian.net/browse/QA-1501)) ([69b054f](https://github.com/mendersoftware/mender-server-enterprise/commit/69b054f16c458fc0ec77a7c070b2684eaf38b665))  by @alfrunes
+
+
+
+
+- *(gui)* Let input handle submission errors internally to keep user changes
+ ([bd0a954](https://github.com/mendersoftware/mender-server-enterprise/commit/bd0a954c3d0235b9726d861b365caba92b316709))  by @mzedel
+
+
+
+- *(gui)* Let notes & description inputs handle submissions consistently
+ ([8e92097](https://github.com/mendersoftware/mender-server-enterprise/commit/8e920971862a1607f62883b6734c13313db944f3))  by @mzedel
+
+
+
+
+  - to prevent user data loss
+
+- *(gui)* Align user editing drawer with updated design
+([MEN-9332](https://northerntech.atlassian.net/browse/MEN-9332)) ([a687e88](https://github.com/mendersoftware/mender-server-enterprise/commit/a687e881f5575240391e960e0137cce4eda64396))  by @mzedel
+
+
+
+
+
+  & remove password reset checkbox
+
+- *(gui)* Increased setting item rendering flexibility
+ ([3ef7004](https://github.com/mendersoftware/mender-server-enterprise/commit/3ef7004ece7d04ef68a1655f0d4641dcb8dc849b))  by @mzedel
+
+
+
+- *(gui)* Promote toggle settings to have their own component
+ ([f51fc6a](https://github.com/mendersoftware/mender-server-enterprise/commit/f51fc6aaf3ef2f5bd64ab66dc33a0492d01fb35d))  by @mzedel
+
+
+
+- *(gui)* Ensure consistent appearance of (toggle )setting items
+ ([9924ddf](https://github.com/mendersoftware/mender-server-enterprise/commit/9924ddf055d74a77c1599e2c5e368b1ef3bbb585))  by @mzedel
+
+
+
+
+  & align width w/ updated design
+
+- *(gui)* Align global settings with updated design
+([MEN-9327](https://northerntech.atlassian.net/browse/MEN-9327)) ([418b1ec](https://github.com/mendersoftware/mender-server-enterprise/commit/418b1ec62f5af993e27dbf8574f2fbd2415e2aff))  by @mzedel
+
+
+
+
+- *(gui)* Align roles & users overview with updated design
+([MEN-9335](https://northerntech.atlassian.net/browse/MEN-9335)) ([7595a53](https://github.com/mendersoftware/mender-server-enterprise/commit/7595a530134499f0de88ea58fc78cde30e664eaf))  by @mzedel
+
+
+
+
+- *(gui)* Align role creation/editing drawer with updated design
+([MEN-9333](https://northerntech.atlassian.net/browse/MEN-9333)) ([b15c8a2](https://github.com/mendersoftware/mender-server-enterprise/commit/b15c8a247e748c2d2cd875f58d55ee9f8c986bd0))  by @mzedel
+
+
+
+
+- *(gui)* Improved typescript adoption in artifact details
+([MEN-9319](https://northerntech.atlassian.net/browse/MEN-9319)) ([3a23ed3](https://github.com/mendersoftware/mender-server-enterprise/commit/3a23ed338391caf52c4fd26abce2184492140edd))  by @mineralsfree
+
+
+
+
+- *(gui)* Align user settings with updated design
+([MEN-9336](https://northerntech.atlassian.net/browse/MEN-9336)) ([1bba7e8](https://github.com/mendersoftware/mender-server-enterprise/commit/1bba7e8e9fa86583ca04e80cd087f80e61601d2e))  by @mzedel
+
+
+
+
+- *(gui)* Let organization organization + sso settings rely more on default setting appearance
+ ([88b1d37](https://github.com/mendersoftware/mender-server-enterprise/commit/88b1d379ec6bac9eb9e6b1b6cd357780befe3d8b))  by @mzedel
+
+
+
+
+  to further align w/ updated design
+
+- *(pkg)* Remove duplicate code paths in rest.utils
+ ([541f1f3](https://github.com/mendersoftware/mender-server-enterprise/commit/541f1f3e05b350179c1bc07691b1391575b4b8dd))  by @alfrunes
+
+
+
+- *(useradm)* Use generated deployments client
+([QA-1513](https://northerntech.atlassian.net/browse/QA-1513)) ([e6900ea](https://github.com/mendersoftware/mender-server-enterprise/commit/e6900ea925f7bf2d7ba5fb00698150f956f169d2))  by @frodeha
+
+
+
+
+- *(useradm)* Use generated inventory client
+([QA-1513](https://northerntech.atlassian.net/browse/QA-1513)) ([03e2310](https://github.com/mendersoftware/mender-server-enterprise/commit/03e231099fb785e67687e0fc5b513f45190fb261))  by @frodeha
+
+
+
+
+- *(useradm)* Use generated tenantadm client
+([QA-1513](https://northerntech.atlassian.net/browse/QA-1513)) ([c0a97fe](https://github.com/mendersoftware/mender-server-enterprise/commit/c0a97fe843e2059d32d7075404ab633765cd03e6))  by @frodeha
+
+
+
+
+- *(useradm)* Use generated workflows client
+([QA-1513](https://northerntech.atlassian.net/browse/QA-1513)) ([71df140](https://github.com/mendersoftware/mender-server-enterprise/commit/71df140ce80925d3a4b812bf33e9f93c667aee10))  by @frodeha
+
+
+
+
+- Added support for `external` test environment in ng tests
+ ([09aefa4](https://github.com/mendersoftware/mender-server-enterprise/commit/09aefa4dc814073b07b1afdf822aaab20d8e1482))  by @frodeha
+
+
+
+- Update opensource ng tests to support abstract environments
+ ([6f6e31f](https://github.com/mendersoftware/mender-server-enterprise/commit/6f6e31fe11693effa95db241f78a133056807f4a))  by @frodeha
+
+
+
+- Update enterprise ng tests to support abstract environments
+ ([1acaae5](https://github.com/mendersoftware/mender-server-enterprise/commit/1acaae58541d030ff968b4a0cf6264304ae93e82))  by @frodeha
+
+
+
+
+
+
+
+
+
 ## 4.2.0-saas.10 - 2026-05-29
 
 
