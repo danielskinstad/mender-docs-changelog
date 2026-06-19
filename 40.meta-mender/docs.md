@@ -7,6 +7,91 @@ shortcode-core:
 github: false
 ---
 
+#### meta-mender (wrynose-v2026.06)
+
+New changes in meta-mender since scarthgap-v2026.04:
+
+##### Bug Fixes
+
+* Copy grow-data template to B before sed substitution.
+  Otherwise subsequent runs will not find the `@...@` markers in the
+  already modified template in workdir and nothing gets updated.
+  Fixes an issue were `mender-growfs-data` script is not updated after
+  changing relevant `MENDER_*` variables unless we do a full sstate clean
+  and rebuild.
+* Fix installing folders to boot directory
+* Fix PSEUDO_INCLUDE_PATHS in mender-bootstrap-artifact.bbclass
+* Upgrade U-Boot to 2026.01 and Yocto LTS release Wrynose
+* Replace cp -a with cp -R in mender-helpers.bbclass
+* Add wrynose to meta-mender-qemu LAYERSERIES_COMPAT
+* Add wrynose to remaining sublayer LAYERSERIES_COMPAT
+* Use host strip for envtools in uboot auto-configure
+* Use full ESP GUID instead of deprecated EF00 partition type
+* Set CONFIG_BOOTCOUNT_ALTBOOTCMD for U-Boot 2025.04+
+* Remove scarthgap from LAYERSERIES_COMPAT
+* Migrate from WORKDIR to UNPACKDIR
+* Remove S = WORKDIR/git from grub recipes
+* Add destsuffix to Go recipe SRC_URI
+* Use BPN in SRC_URI in `mender-wait-for-timesync` and
+  `example-state-scripts` to fix fatal QA errors.
+  ([MEN-9619](https://northerntech.atlassian.net/browse/MEN-9619))
+* Fix U-Boot bootcount rollback being disabled on U-Boot 2025.04 and
+  newer, where an empty CONFIG_BOOTCOUNT_ALTBOOTCMD overrode Mender's altbootcmd.
+  ([MEN-9619](https://northerntech.atlassian.net/browse/MEN-9619))
+* Fix devices booting with a 2011 clock on wrynose, which made server
+  TLS fail with "certificate is not yet valid" until time sync.
+  ([MEN-9619](https://northerntech.atlassian.net/browse/MEN-9619))
+* Fix an issue where the version check for mender-gateway
+  was too strict for binaries compiled with newer golang versions.
+
+##### Features
+
+* Add commercial recipe for mender-orchestrator
+  ([MEN-7015](https://northerntech.atlassian.net/browse/MEN-7015))
+* Add mender-orchestrator-support recipes
+  ([MEN-7201](https://northerntech.atlassian.net/browse/MEN-7201))
+* Add demo mock environment for mender-orchestrator
+  ([MEN-8786](https://northerntech.atlassian.net/browse/MEN-8786))
+* Added a new `MENDER_FEATURE`, `mender-orchestrator-install`,
+  to make the installation of mender-orchestrator easier. `mender-orchestrator-install`
+  will append mender-orchestrator, mender-orchestrator-support and default
+  the Device tier to `system`.
+  ([MEN-9052](https://northerntech.atlassian.net/browse/MEN-9052))
+* Add support for main branches for commercial recipes
+  ([MEN-9583](https://northerntech.atlassian.net/browse/MEN-9583))
+* Set layer compatibility in meta-mender-ci to `wrynose`
+* Add recipes for mender-orchestrator and mender-orchestrator-support 0.5.0
+* Add recipes for mender-gateway 2.1.0
+  ([QA-1634](https://northerntech.atlassian.net/browse/QA-1634))
+* Added recipe for `mender` 5.0.5
+* Added recipe for `mender-connect` 2.3.3
+
+##### Other
+
+* Added journal log collection at the end of acceptance test run
+  ([QA-1099](https://northerntech.atlassian.net/browse/QA-1099))
+* Remove recipe for `mender-artifact` 4.3.0
+* Remove recipe for `mender-binary-delta` 1.4.0
+* Remove recipe for `mender-binary-delta` 1.4.1
+* Remove recipe for `mender-gateway` 1.1.0
+* Remove recipe for `mender-artifact` 3.10.0
+* Remove recipe for `mender-artifact` 3.10.1
+* Remove recipe for `mender-artifact` 3.10.2
+* Remove recipe for `mender-client` 3.5.0
+* Remove recipe for `mender-client` 3.5.1
+* Remove recipe for `mender-client` 3.5.2
+* Remove recipe for `mender-client` 3.5.3
+* Remove recipe for `mender-connect` 2.1.0
+* Remove recipe for `mender-connect` 2.1.1
+* Remove recipe for `mender-connect` 2.1.2
+* Remove recipe for `grub-efi-precompiled` for GRUB v2.04
+* Remove recipes for `mender-monitor` 1.3 series
+* Remove recipes for `mender-gateway` 1.2 series
+* Remove recipes for `mender-artifact` 3.11, 4.0 and 4.1 series
+* Remove recipes for `mender` 4.0 series
+* Remove recipes for `mender-connect` 2.2 series
+
+
 ## meta-mender scarthgap-v2026.04
 
 ### Changelogs
