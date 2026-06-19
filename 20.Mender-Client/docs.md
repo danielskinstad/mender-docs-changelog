@@ -191,6 +191,49 @@ The release notes & changelogs can be found in the pages for the individual comp
 
 The following release notes & changelogs are for the `mender` repository alone.
 
+
+## mender 5.0.5
+
+_Released 06.17.2026_
+
+### Changelogs
+
+#### mender (5.0.5)
+
+New changes in mender since 5.0.4:
+
+##### Bug Fixes
+
+* Revert a fix that introduced timeouts on tcp stream sockets which
+  caused the mender-connect connection to be closed after 5 minutes.
+  ([MEN-9433](https://northerntech.atlassian.net/browse/MEN-9433))
+* Handle first timestamp in deployment logs more carefully
+  Depending on the system and build configuration, the timestamps
+  in logs can use lower (likely) or higher (unlikely) time
+  resolution than expected (nanoseconds). So in case of a
+  deployment failure with corrupted logs, when using the first
+  timestamp as a replacement in the extra `(THE ORIGINAL LOGS
+  CONTAINED INVALID ENTRIES)` log entry, care must be taken to make
+  sure the extra log entry still has a valid timestamp and that the
+  result is valid JSON.
+  ([MEN-9427](https://northerntech.atlassian.net/browse/MEN-9427))
+* Add an explicit check for 413 Request Body Too Large errors
+  when sending deployment logs in order to not go into an unnecessary retry
+  loop when the deployment logs are too big.
+  ([ME-616](https://northerntech.atlassian.net/browse/ME-616))
+* The /tmp/mender/inventory-geo cache file used by the
+  mender-inventory-geo script now has stricter permissions (600)
+  ([MEN-9752](https://northerntech.atlassian.net/browse/MEN-9752))
+* Fix an issue where leaving RetryPollIntervalSeconds unset
+  in mender.conf causes failed inventory and deployment polls to be
+  retried without any delay. The default is now 300 seconds, with retries
+  backing off from 60 seconds up to this maximum. This aligns the default
+  with the Go client and the example production mender.conf.
+  ([MEN-9719](https://northerntech.atlassian.net/browse/MEN-9719))
+* Large deployment logs are now trimmed to be accepted by the server
+  ([MEN-9415](https://northerntech.atlassian.net/browse/MEN-9415))
+
+
 ## mender 5.0.4
 
 _Released 02.17.2026_
