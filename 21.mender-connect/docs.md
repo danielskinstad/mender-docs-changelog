@@ -7,6 +7,24 @@ shortcode-core:
 github: false
 ---
 
+## mender-connect 2.3.3
+
+_Released 06.17.2026_
+
+### Changelogs
+
+#### mender-connect (2.3.3)
+
+New changes in mender-connect since 2.3.2:
+
+##### Bug Fixes
+
+* Do not ignore terminal port-forwarding error.
+  If mender-connect fails to write a message to the connection, treat it
+  as a terminal error instead of ignoring it.
+* Handle partial write to port-forwarding connection.
+
+
 ## mender-connect 2.3.2
 
 _Released 02.17.2026_
