@@ -7,6 +7,10 @@ shortcode-core:
 github: false
 ---
 
+## meta-mender wrynose-v2026.06
+
+### Changelogs
+
 #### meta-mender (wrynose-v2026.06)
 
 New changes in meta-mender since scarthgap-v2026.04:
