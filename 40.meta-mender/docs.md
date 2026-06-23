@@ -7,6 +7,10 @@ shortcode-core:
 github: false
 ---
 
+## meta-mender wrynose-v2026.06
+
+### Changelogs
+
 #### meta-mender (wrynose-v2026.06)
 
 New changes in meta-mender since scarthgap-v2026.04:
@@ -90,6 +94,26 @@ New changes in meta-mender since scarthgap-v2026.04:
 * Remove recipes for `mender-artifact` 3.11, 4.0 and 4.1 series
 * Remove recipes for `mender` 4.0 series
 * Remove recipes for `mender-connect` 2.2 series
+
+## meta-mender scarthgap-v2026.06
+
+### Changelogs
+
+#### meta-mender (scarthgap-v2026.06)
+
+New changes in meta-mender since scarthgap-v2026.04:
+
+##### Bug Fixes
+
+* Fix an issue where the version check for mender-gateway
+  was too strict for binaries compiled with newer golang versions.
+
+##### Features
+
+* Add recipe for `mender` 5.0.5
+* Add recipe for `mender-connect` 2.3.3
+* Add recipes for `mender-gateway` 2.1.0
+  ([QA-1634](https://northerntech.atlassian.net/browse/QA-1634))
 
 
 ## meta-mender scarthgap-v2026.04
