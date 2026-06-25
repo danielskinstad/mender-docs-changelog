@@ -7,8 +7,223 @@ shortcode-core:
 github: false
 ---
 
-## 4.2.0-saas.11 - 2026-06-17
+## 4.2.0-saas.12 - 2026-06-25
 
+
+### Bug fixes
+
+
+- *(deployments)* Workaround potential upsert race when creating release
+([ME-633](https://northerntech.atlassian.net/browse/ME-633)) ([1f4e963](https://github.com/mendersoftware/mender-server-enterprise/commit/1f4e9632015d856f543a0b46f798ed6838e9f2db))  by @frodeha
+
+
+
+
+- *(deployments)* Sanitize manifest name
+([MEN-9844](https://northerntech.atlassian.net/browse/MEN-9844)) ([0565ce2](https://github.com/mendersoftware/mender-server-enterprise/commit/0565ce2971bc44838c10ec7d60d3ecf66916190f))  by @frodeha
+
+
+
+
+- *(deployments)* Prettify error when uploading corrupt manifest artifact
+([MEN-9844](https://northerntech.atlassian.net/browse/MEN-9844)) ([984189a](https://github.com/mendersoftware/mender-server-enterprise/commit/984189a14f2dc35c8ae5b695169c432a3e4951a3))  by @frodeha
+
+
+
+
+- *(deviceconnect)* Consolidate default config with config.yaml file
+ ([98d656a](https://github.com/mendersoftware/mender-server-enterprise/commit/98d656acf4f9cfcb5e06e69b8c2764af08fa0e70))  by @alfrunes
+
+
+
+
+  The default nats configuration was silently overwritten by the default
+  configuration file. The actual default does not make much sense in a
+  containerized environments so aligned the default with the value
+  inherited (by accident) from the config file.
+
+- *(deviceconnect)* Nats returns an error if failing initial connect
+ ([2dfe9e2](https://github.com/mendersoftware/mender-server-enterprise/commit/2dfe9e2c0eecb81008c00b8beb7f59131d4ee842))  by @alfrunes
+
+
+
+
+  Instead of retrying indefinitely.
+
+- *(deviceconnect)* Resolve send on closed channel panic in PipeWriter
+ ([b16d373](https://github.com/mendersoftware/mender-server-enterprise/commit/b16d373931750216b28139628ca92a3958672239))  by @frodeha
+
+
+
+
+- *(gui)* Let onboarding tip to create a deployment point to the right button again
+ ([0e021a5](https://github.com/mendersoftware/mender-server-enterprise/commit/0e021a56fbada94b2b5ab7c3bba4a05549f19aad))  by @mzedel
+
+
+
+- *(gui)* Let all manifest related file types be rejected if they are too large
+ ([bfb3e1c](https://github.com/mendersoftware/mender-server-enterprise/commit/bfb3e1c6529b7f4cb53f52b5c933080cf5b3cbdd))  by @mzedel
+
+
+
+
+   - not just `.mender` artifacts
+
+- *(gui)* Prevented release & manifest tag change inputs from causing a page refresh & data loss
+([MEN-9850](https://northerntech.atlassian.net/browse/MEN-9850)) ([4d8587c](https://github.com/mendersoftware/mender-server-enterprise/commit/4d8587c0efbfb5bcc614ef61af8c9235166edfc0))  by @mzedel
+
+
+
+
+- *(gui)* Correct accepted devices percentage calculation
+([MEN-9864](https://northerntech.atlassian.net/browse/MEN-9864)) ([2355e98](https://github.com/mendersoftware/mender-server-enterprise/commit/2355e986127a2948ea030772fbe5b1ffe365509a))  by @mzedel
+
+
+
+
+- *(gui)* Add rbac support for software/ manifest related functionality via updated nt-gui packages
+ ([daf0806](https://github.com/mendersoftware/mender-server-enterprise/commit/daf0806f35e06e92c7bad0ab6a702572520d4e29))  by @mzedel
+
+
+
+- *(iot-manager)* Align inconsistent default database name config
+ ([3463bf0](https://github.com/mendersoftware/mender-server-enterprise/commit/3463bf0802d9e30cdf11f1cdbb92f82183a9601c))  by @alfrunes
+
+
+
+
+  The database name in the config file is inconsistent with the actual
+  default. Starting the service with an empty configuration file would
+  render the database empty. This commit also removes all the config file
+  overrides.
+
+- *(useradm)* Add software endpoints to ReadReleases permission set
+([MEN-9881](https://northerntech.atlassian.net/browse/MEN-9881)) ([fda9c23](https://github.com/mendersoftware/mender-server-enterprise/commit/fda9c23a529b8d6c83b15600db5f479ff7b42d56))  by @frodeha
+
+
+
+
+- *(useradm)* Add read release by name to ReadReleases permission set
+([MEN-9881](https://northerntech.atlassian.net/browse/MEN-9881)) ([ddcd39a](https://github.com/mendersoftware/mender-server-enterprise/commit/ddcd39a056dbe080935629f80929c8d2ce9f723e))  by @frodeha
+
+
+
+
+- *(useradm)* Check if user is verified when assigning to tenant
+([MEN-9660](https://northerntech.atlassian.net/browse/MEN-9660)) ([7030f72](https://github.com/mendersoftware/mender-server-enterprise/commit/7030f72e543a6730ded01e54401a5e2e8f283dd1))  by @bahaa-ghazal
+
+
+
+
+- *(workflows)* Use WORKFLOWS_MENDER_URL correctly in monitoring alerts
+([MEN-9876](https://northerntech.atlassian.net/browse/MEN-9876)) ([7d083dd](https://github.com/mendersoftware/mender-server-enterprise/commit/7d083dd471ae92176ce92e7880d2603a6654f98d))  by @frodeha
+
+
+
+
+
+
+
+
+### Documentation
+
+
+- *(deployments)* Extend deployment status with "incompatible_tier" status
+([MEN-9630](https://northerntech.atlassian.net/browse/MEN-9630)) ([9e23201](https://github.com/mendersoftware/mender-server-enterprise/commit/9e232014a1cd4206371e5d057790e16c780ef023))  by @bahaa-ghazal
+
+
+
+
+- *(deviceauth)* Added id param according to openAPI syntax
+ ([81ec188](https://github.com/mendersoftware/mender-server-enterprise/commit/81ec18874fd66c474482f5cae8faf43c62ed88d4))  by @mineralsfree
+
+
+
+
+
+
+
+### Features
+
+
+- *(deployments)* Add custom fast validation for manifest
+([MEN-9660](https://northerntech.atlassian.net/browse/MEN-9660)) ([f9b0212](https://github.com/mendersoftware/mender-server-enterprise/commit/f9b021287dfc07f4dc8cb1fd7cdd98bf03d6f219))  by @bahaa-ghazal
+
+
+
+
+- *(deployments)* Add rbac to software endpoints
+([MEN-9881](https://northerntech.atlassian.net/browse/MEN-9881)) ([57ad195](https://github.com/mendersoftware/mender-server-enterprise/commit/57ad195275e9720622f4f19fed4d41f53bc19aff))  by @frodeha
+
+
+
+
+- *(deployments)* Restrict manifest to system tier devices
+([MEN-9630](https://northerntech.atlassian.net/browse/MEN-9630)) ([a5c98c2](https://github.com/mendersoftware/mender-server-enterprise/commit/a5c98c295c55195e4f23ef3683f6279567d154bf))  by @bahaa-ghazal
+
+
+
+
+
+  Extend the existing feature flag `orchestrator_manifests` which restricts manifests
+  to system devices when enabled, and vice versa. This also introduce a new device deployment
+  status `incompatible_tier` for deployments that do not satisfy this condition.
+
+
+
+
+
+### Refactor
+
+
+- *(deviceauth)* Replace custom workflows client with generated one
+([QA-1498](https://northerntech.atlassian.net/browse/QA-1498)) ([2eaafc3](https://github.com/mendersoftware/mender-server-enterprise/commit/2eaafc330a0ee891368250af915412b6431e7e4b))  by @bahaa-ghazal
+
+
+
+
+- *(deviceauth)* Replace custom inventory client with generated one
+([QA-1498](https://northerntech.atlassian.net/browse/QA-1498)) ([1b71262](https://github.com/mendersoftware/mender-server-enterprise/commit/1b71262e301c6b6db1165674e51a04b2c5053de7))  by @bahaa-ghazal
+
+
+
+
+- *(deviceauth)* Replace custom iotmanager client with generated one
+([QA-1498](https://northerntech.atlassian.net/browse/QA-1498)) ([0e7d2a4](https://github.com/mendersoftware/mender-server-enterprise/commit/0e7d2a40baa79797fe08b4d2f01ef04bcfa2223f))  by @bahaa-ghazal
+
+
+
+
+- *(deviceauth)* Replace custom tenantadm client with generated one
+([QA-1498](https://northerntech.atlassian.net/browse/QA-1498)) ([9935e5d](https://github.com/mendersoftware/mender-server-enterprise/commit/9935e5d2f0aa6030a54f3e3e58527989a125b686))  by @bahaa-ghazal
+
+
+
+
+- *(gui)* Let onboarding tooltip position be handled by related components via mui v9 slotprops
+ ([e382fbf](https://github.com/mendersoftware/mender-server-enterprise/commit/e382fbf0a8a4e0a930f7248f685911c9b9c8b20c))  by @mzedel
+
+
+
+- *(gui)* Handle notifications on group creation instead of relying on store to do so
+([MEN-9872](https://northerntech.atlassian.net/browse/MEN-9872)) ([a6b86bc](https://github.com/mendersoftware/mender-server-enterprise/commit/a6b86bc0d956b12d7e65357b8affd549519f10aa))  by @mzedel
+
+
+
+
+
+  - in order to fix styling issues
+
+
+
+
+
+
+
+## 4.2.0-saas.11 - 2026-06-17 [ROLLED BACK]
+
+!!! warning "Release Rolled Back"
+    We reverted Hosted Mender to **4.2.0-saas.10**, and the features/fixes listed below are currently unavailable. We will reintroduce them in the upcoming release.
 
 ### Bug fixes
 
