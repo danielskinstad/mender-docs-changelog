@@ -7,6 +7,353 @@ shortcode-core:
 github: false
 ---
 
+## 4.2.0-saas.13 - 2026-07-09
+
+
+### Bug fixes
+
+
+- *(deviceauth)* Skip ratelimiting on bad tokens
+ ([fe92177](https://github.com/mendersoftware/mender-server-enterprise/commit/fe92177f482681e2feaea5f188ff3cdfdd46390f))  by @bahaa-ghazal
+
+
+
+- *(gui)* Make device detail tab strip scrollable on mobile
+([ME-683](https://northerntech.atlassian.net/browse/ME-683)) ([a4e12b8](https://github.com/mendersoftware/mender-server-enterprise/commit/a4e12b8c36515cdc16d9a1eb40db64a728d2d08a))  by @nickanderson
+
+
+
+
+
+  The device-details tab strip used the default standard Tabs variant,
+  which has no horizontal scrolling. Once the drawer became width-
+  constrained by BaseDrawer (72d1fa0c), overflowing tabs such as
+  Troubleshoot were clipped and unreachable on mobile. Make the strip
+  horizontally scrollable so every tab stays reachable regardless of
+  drawer width (ME-683).
+
+- *(gui)* Fixed an issue when deploying to a dynamic group targeting a single device
+([MEN-9530](https://northerntech.atlassian.net/browse/MEN-9530)) ([1c97770](https://github.com/mendersoftware/mender-server-enterprise/commit/1c97770dafd1c70bdfe25c036167d2a7fa794e6a))  by @mzedel
+
+
+
+
+- *(gui)* Excluded status from device identity details as it's shown below
+([MEN-7891](https://northerntech.atlassian.net/browse/MEN-7891)) ([837631d](https://github.com/mendersoftware/mender-server-enterprise/commit/837631d7cac96163b07a9ef996b4d048901df99f))  by @mzedel
+
+
+
+
+- *(gui)* Let empty role permission selection close the selection dropdown
+([MEN-9276](https://northerntech.atlassian.net/browse/MEN-9276)) ([4697bce](https://github.com/mendersoftware/mender-server-enterprise/commit/4697bce91a37549d8fb2526ee3f5344412241772))  by @mzedel
+
+
+
+
+- *(gui)* Fixed an issue that prevented opening deployment reports via internal links
+([MEN-9909](https://northerntech.atlassian.net/browse/MEN-9909)) ([3d3c412](https://github.com/mendersoftware/mender-server-enterprise/commit/3d3c41232ccb65dfd5bd72db19b47bf3108f8430))  by @mzedel
+
+
+
+
+
+  - always parse deployment url params on link navigation now
+
+- *(gui)* Align delete icon for delete intents across the ui
+([MEN-8279](https://northerntech.atlassian.net/browse/MEN-8279)) ([76d8549](https://github.com/mendersoftware/mender-server-enterprise/commit/76d85497e55a934216b1c78f5b7487ed76dc9556))  by @mzedel
+
+
+
+
+- *(gui)* Clear stale group selection when opening devices from search
+([ME-680](https://northerntech.atlassian.net/browse/ME-680)) ([acc6d6f](https://github.com/mendersoftware/mender-server-enterprise/commit/acc6d6f47438ac0889b77a6d1063326dc136e750))  by @mzedel
+
+
+
+
+
+  only consider a pre-existing group selection when navigating if the
+  url is set accordingly - otherwise assume device selection is preferred
+
+- *(gui)* Align device limit validation constraints for sp tenants
+([ME-585](https://northerntech.atlassian.net/browse/ME-585)) ([f9ed84c](https://github.com/mendersoftware/mender-server-enterprise/commit/f9ed84cf1297af9d6682f1282a7af40e8cc5fda3))  by @mzedel
+
+
+
+
+
+  the input validation didn't take the current tenant allocation into account - while the remainder of the form did
+
+- *(gui)* Hide pat creation and revocation for read-only users
+([MEN-8386](https://northerntech.atlassian.net/browse/MEN-8386)) ([67251dd](https://github.com/mendersoftware/mender-server-enterprise/commit/67251ddc70dc4e6bcedf35542892dedd18d9d321))  by @mzedel
+
+
+
+
+- *(gui)* Stop filtering out current group from move-to-group dialog
+([MEN-9736](https://northerntech.atlassian.net/browse/MEN-9736)) ([6356dbb](https://github.com/mendersoftware/mender-server-enterprise/commit/6356dbb9199fdf24339a28c8f362b4dcda27b809))  by @mzedel
+
+
+
+
+
+  The destination group dropdown excluded the currently-open sidebar group,
+  preventing users from moving devices into the group they were viewing
+
+- *(gui)* Fixed an issue that could lead to unintended dashboard widget removal
+([MEN-9865](https://northerntech.atlassian.net/browse/MEN-9865)) ([ebf2f5a](https://github.com/mendersoftware/mender-server-enterprise/commit/ebf2f5ab08db6d38d7d8c8d6c34dc13da7dc97ea))  by @mzedel
+
+
+
+
+- *(gui)* Use absolute path in SP tenant catch-all redirect
+([MEN-9489](https://northerntech.atlassian.net/browse/MEN-9489)) ([714b0fb](https://github.com/mendersoftware/mender-server-enterprise/commit/714b0fb69860c32ec045b816ed3dd4ab245ecee2))  by @mzedel
+
+
+
+
+- *(tenantadm)* Allow non-ASCII names when creating child tenants
+([ME-686](https://northerntech.atlassian.net/browse/ME-686)) ([970ff41](https://github.com/mendersoftware/mender-server-enterprise/commit/970ff41d6f716fb24faa181f0d1539462913ec8f))  by @LudvigAnderson
+
+
+
+
+
+
+- *(tenantadm)* Use the proper context to get the workflows url
+([MEN-9926](https://northerntech.atlassian.net/browse/MEN-9926)) ([1bdc294](https://github.com/mendersoftware/mender-server-enterprise/commit/1bdc294573e14dd73c0a6bf491531e5b767d537c))  by @merlin-northern
+
+
+
+
+
+
+- *(workflows)* Generalize further the email_notification workflow
+([QA-1646](https://northerntech.atlassian.net/browse/QA-1646)) ([ae3ed20](https://github.com/mendersoftware/mender-server-enterprise/commit/ae3ed20cf666b12ab39ace23f132063dfbdf8603))  by @merlin-northern
+
+
+
+
+
+
+
+
+
+
+### Documentation
+
+
+- *(inventory)* Update list of supported MongoDB operators
+([MEN-9927](https://northerntech.atlassian.net/browse/MEN-9927)) ([9f33045](https://github.com/mendersoftware/mender-server-enterprise/commit/9f33045a35f1bb0f55fa5130bcb52ed7c8862ba4))  by @kjaskiewiczz
+
+
+
+
+- *(inventory)* Support boolean attribute values in responses
+([MEN-9813](https://northerntech.atlassian.net/browse/MEN-9813)) ([aa2b6de](https://github.com/mendersoftware/mender-server-enterprise/commit/aa2b6deba3c88951e1aed901c14ae4b07a64b6b7))  by @bahaa-ghazal
+
+
+
+
+- *(useradm)* Add api spec for V2 /users/me endpoint
+([MEN-9705](https://northerntech.atlassian.net/browse/MEN-9705)) ([c014a7c](https://github.com/mendersoftware/mender-server-enterprise/commit/c014a7c2ab713f75cecbe888fa221dd72a42ebbd))  by @bahaa-ghazal
+
+
+
+
+- *(useradm)* Add api spec for /user/me/email-change/complete endpoint
+([MEN-9710](https://northerntech.atlassian.net/browse/MEN-9710)) ([9021a0f](https://github.com/mendersoftware/mender-server-enterprise/commit/9021a0f7aaa0ab3f0c42c0f7edba7db288e991b7))  by @bahaa-ghazal
+
+
+
+
+
+
+
+
+### Features
+
+
+- *(admin-panel)* Add deprecation notice broadcast tab
+ ([4b18770](https://github.com/mendersoftware/mender-server-enterprise/commit/4b18770afad8b59ea0bfb3d9f51177351b6335df))  by @alfrunes
+
+
+
+
+
+
+  Adds a new "Deprecation notice" tab to the hosted Mender admin
+  panel for sending feature-deprecation announcements to every active
+  tenant. The page is intentionally minimal: paste feature details
+  (Markdown), pick the audience (tenant admins by default, or all
+  users), preview, then send a test or fire the broadcast.
+  
+  The form bakes in sensible defaults for subject, title, preheader,
+  greeting, and intro so the operator only needs to write the
+  feature-specific text. All defaults are overridable under the
+  collapsible "Customize" block.
+
+- *(admin-panel)* Use the email_notification to send emails
+([QA-1646](https://northerntech.atlassian.net/browse/QA-1646)) ([83d917a](https://github.com/mendersoftware/mender-server-enterprise/commit/83d917a8e64e324a71ce797cd3885cd69b0267b3))  by @merlin-northern
+
+
+
+
+
+
+- *(deviceauth)* Add new test device limit
+([MEN-9352](https://northerntech.atlassian.net/browse/MEN-9352)) ([b63a7f1](https://github.com/mendersoftware/mender-server-enterprise/commit/b63a7f1feea0e4ebc3477bf92b6d3f2f2f94db20))  by @bahaa-ghazal
+
+
+
+
+- *(deviceauth)* Apply device limit when assigning test devices
+([MEN-9352](https://northerntech.atlassian.net/browse/MEN-9352)) ([02214e6](https://github.com/mendersoftware/mender-server-enterprise/commit/02214e6018d3a3d74a8a75ebb93446c64434346e))  by @bahaa-ghazal
+
+
+
+
+- *(deviceauth)* Add device flags to ratelimit's context
+([MEN-9235](https://northerntech.atlassian.net/browse/MEN-9235)) ([d7c04cd](https://github.com/mendersoftware/mender-server-enterprise/commit/d7c04cdf5db9c31bf4e894505bfb8bb0c6c7cd84))  by @bahaa-ghazal
+
+
+
+
+- *(deviceauth)* Add caching for device flags
+ ([57a6788](https://github.com/mendersoftware/mender-server-enterprise/commit/57a6788bfdebac0717bd617f5f22f34706802776))  by @bahaa-ghazal
+
+
+
+- *(devicemonitor)* Add server URL setting defaulting to https://hosted.mender.io
+([QA-1646](https://northerntech.atlassian.net/browse/QA-1646)) ([ed22c19](https://github.com/mendersoftware/mender-server-enterprise/commit/ed22c191630e06e9410e9c29ad214639027118c4))  by @merlin-northern
+
+
+
+
+
+  This change introduces a new setting (like useradm has) that points
+  to the url of the server we are running under. It is needed
+  for the porting to the generalized email_notification workflow.
+
+- *(gui)* Added test device status chip to device list
+([MEN-9670](https://northerntech.atlassian.net/browse/MEN-9670)) ([dc717c4](https://github.com/mendersoftware/mender-server-enterprise/commit/dc717c4192e0703f475ec82d8f694b967f227abf))  by @mineralsfree
+
+
+
+
+- *(gui)* Added special filter handling for test device flag
+([MEN-9670](https://northerntech.atlassian.net/browse/MEN-9670)) ([138d2ed](https://github.com/mendersoftware/mender-server-enterprise/commit/138d2ed747f854894b3562be07fad5ce40243971))  by @mineralsfree
+
+
+
+
+- *(gui)* Add disclaimer that synchronized updates were removed in client 4
+([MEN-9723](https://northerntech.atlassian.net/browse/MEN-9723)) ([1a8e50b](https://github.com/mendersoftware/mender-server-enterprise/commit/1a8e50b5fb5ab11dca1a289e7ca0a5dcf16a0434))  by @mzedel
+
+
+
+
+- *(gui)* Expand access to advanced device filter operators for everyone & all plans
+([MEN-9927](https://northerntech.atlassian.net/browse/MEN-9927)) ([2491c1d](https://github.com/mendersoftware/mender-server-enterprise/commit/2491c1da7634120031d75f32e32ec403468e03ea))  by @mzedel
+
+
+
+
+- *(gui)* Prevented autoselection in autocomplete
+([MEN-8643](https://northerntech.atlassian.net/browse/MEN-8643)) ([a13bcf9](https://github.com/mendersoftware/mender-server-enterprise/commit/a13bcf9498c684c5e19f494d5e3590e091b79af6))  by @mzedel
+
+
+
+
+- *(gui)* Added multi-select with checkboxes component
+ ([222538d](https://github.com/mendersoftware/mender-server-enterprise/commit/222538d3b702e2e157475305192edf72cd157245))  by @mzedel
+
+
+
+- *(gui)* Added text only display mode & aligned autoselection default
+ ([72955da](https://github.com/mendersoftware/mender-server-enterprise/commit/72955dab9028b1518fb7cb57c82331718b26dd44))  by @mzedel
+
+
+
+- *(gui)* Added rhf integrated async autocomplete
+ ([8434505](https://github.com/mendersoftware/mender-server-enterprise/commit/843450539bb7510ce3d68fe440121eeb5903946c))  by @mzedel
+
+
+
+- *(gui)* Add confirmation dialog for bulk reject/dismiss actions
+([MEN-9601](https://northerntech.atlassian.net/browse/MEN-9601)) ([6fc4b43](https://github.com/mendersoftware/mender-server-enterprise/commit/6fc4b43aa5f994b5b2396cc68f56baa31a301140))  by @mzedel
+
+
+
+
+- *(inventory)* Support additional MongoDB operators
+([MEN-9927](https://northerntech.atlassian.net/browse/MEN-9927)) ([9093a43](https://github.com/mendersoftware/mender-server-enterprise/commit/9093a43dc6d9cbba5c9b86eff57558ec8cd63508))  by @kjaskiewiczz
+
+
+
+
+
+  With this commit we add support for given operators:
+  $gt, $gte, $lt, $lte, $ltne, $ne, $exists, $regex
+
+- *(tenantadm)* Apply test device limit when creating organization
+([MEN-9352](https://northerntech.atlassian.net/browse/MEN-9352)) ([642ad4e](https://github.com/mendersoftware/mender-server-enterprise/commit/642ad4edb5dcd11420ce8faf8f7710597c4f12ba))  by @bahaa-ghazal
+
+
+
+
+- *(useradm)* Implement V2 /users/me for own user updates
+([MEN-9705](https://northerntech.atlassian.net/browse/MEN-9705)) ([e7b8c6f](https://github.com/mendersoftware/mender-server-enterprise/commit/e7b8c6f824fec279089d9036774ac6d33829c0d2))  by @bahaa-ghazal
+
+
+
+
+- *(workflows)* Add email change request workflow
+([MEN-9713](https://northerntech.atlassian.net/browse/MEN-9713)) ([18cf940](https://github.com/mendersoftware/mender-server-enterprise/commit/18cf940356ea288acdbe7181af6f2372aac4101f))  by @bahaa-ghazal
+
+
+
+
+
+
+
+
+### Refactor
+
+
+- *(gui)* Use destructuring in deviceStatus
+([MEN-9670](https://northerntech.atlassian.net/browse/MEN-9670)) ([1238a85](https://github.com/mendersoftware/mender-server-enterprise/commit/1238a858c3344745d772e8922e45e58a669ec4d6))  by @mineralsfree
+
+
+
+
+- *(gui)* Moved chipselect to forms directory and updated consumer imports
+ ([c79fcfd](https://github.com/mendersoftware/mender-server-enterprise/commit/c79fcfddfa79e03be781f0bc4fbdbe05d7e9d7b6))  by @mzedel
+
+
+
+- *(gui)* Moved unused asyncautocomplete
+ ([e4912bf](https://github.com/mendersoftware/mender-server-enterprise/commit/e4912bfcdebb26cb240e086b18e2858792db7606))  by @mzedel
+
+
+
+- *(gui)* Dashboard code improvements
+([MEN-9312](https://northerntech.atlassian.net/browse/MEN-9312)) ([5691019](https://github.com/mendersoftware/mender-server-enterprise/commit/569101991d0afe5edf6ed5fe91afcb5e5f141d8e))  by @mineralsfree
+
+
+
+
+- Use requset and response attributes with OAS clients
+([MEN-9813](https://northerntech.atlassian.net/browse/MEN-9813)) ([f2ca2cf](https://github.com/mendersoftware/mender-server-enterprise/commit/f2ca2cf4d4b55d4a4131f54cc6b09dcd48a75f90))  by @bahaa-ghazal
+
+
+
+
+
+
+
+
+
 ## 4.2.0-saas.12 - 2026-06-25
 
 
