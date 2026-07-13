@@ -7,6 +7,24 @@ shortcode-core:
 github: false
 ---
 
+## 4.1.2 - 2026-07-09
+
+
+### Bug fixes
+
+
+- *(deviceconnect)* Only allow one connection per device at a time
+ ([69852bc](https://github.com/mendersoftware/mender-server-enterprise/commit/69852bc17e065df3cfe4c61cb91e3fac8f9fd24b))
+
+
+
+
+
+
+
+
+
+
 ## 4.1.1 - 2026-04-07
 
 
