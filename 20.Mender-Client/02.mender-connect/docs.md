@@ -7,6 +7,30 @@ shortcode-core:
 github: false
 ---
 
+## mender-connect 3.0.0 (2026-02-27)
+
+### 3.0.0 - 2026-02-27
+
+##### Features
+
+* lower backoff intervals
+
+  The previous backoff had a starting interval at 1
+  minute and a max backoff at 60 minutes. When it reached 60 minutes it
+  would linearly increase to 120 minutes minutes where it would keep
+  retrying.
+
+  The backoff will now start at 1 second and exponentially increase after
+  3 retries until it reaches 30 minutes where it will keep retrying.
+  For each interval a jitter between 0 and 5 seconds will be added.
+  ([ME-546](https://northerntech.atlassian.net/browse/ME-546))
+* Session expiration is now enabled by default:
+  * `StopExpired` defaults to true
+  * `ExpireAfterIdle` defaults to 10 minutes
+  Note that this is a behavioral change; `StopExpired` previously defaulted
+  to false and no default value was previously assigned to `ExpireAfterIdle`.
+  ([MEN-8260](https://northerntech.atlassian.net/browse/MEN-8260))
+
 ## mender-connect 2.3.3
 
 _Released 06.17.2026_
