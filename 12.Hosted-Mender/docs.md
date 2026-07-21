@@ -7,7 +7,68 @@ shortcode-core:
 github: false
 ---
 
-## 4.2.0-saas.13 - 2026-07-09
+## 4.2.0-saas.14 - 2026-07-17
+
+
+### New features
+
+- *(useradm)* Add RBAC rules for /user/me/email-change/start endpoint
+- *(useradm)* Add endpoint for starting own email update request ([MEN-9708](https://northerntech.atlassian.net/browse/MEN-9708))
+- *(useradm)* Add endpoint for getting pending email update request ([MEN-9712](https://northerntech.atlassian.net/browse/MEN-9712))
+- *(useradm)* Add endpoint for canceling own email update request ([MEN-9711](https://northerntech.atlassian.net/browse/MEN-9711))
+- *(useradm)* Add endpoint for completing own email update request ([MEN-9708](https://northerntech.atlassian.net/browse/MEN-9708))
+- *(useradm)* Return pending email change request with GET users/me ([MEN-9715](https://northerntech.atlassian.net/browse/MEN-9715))
+- *(gui)* Added incompatible tier substate support ([MEN-9312](https://northerntech.atlassian.net/browse/MEN-9312))
+- *(gui)* Add an email change validation route ([MEN-9950](https://northerntech.atlassian.net/browse/MEN-9950))
+
+### Bug fixes
+
+- *(deviceconnect)* Only allow one connection per device at a time
+- *(useradm)* Invalidate password reset requests on email change completion
+- *(useradm)* Return only one status on bad user updates
+- *(gui)* Close the device drawer when filtering for test devices
+- *(deviceconnect)* Enforce tenant access scope for device connections
+- *(deviceconnect)* Stream transmission control ack messages before buffering
+- *(gui)* Fixed issue that crashed ungrouped distribution widget
+- *(gui)* Reverts "hide pat creation and revocation for read-only users"
+- *(gui)* Show / set real attempts value in global setting
+- *(gui)* Show accurate attempt number per device in deployment status
+- *(generate-delta-worker)* Mender-binary-delta runs inside work directory ([MEN-9992](https://northerntech.atlassian.net/browse/MEN-9992))
+
+### Dependency updates
+
+- *(deps)* Update module golang.org/x/net to v0.55.0 [security]
+- *(deps)* Update module golang.org/x/crypto to v0.52.0 [security]
+- *(deps)* Update dependency markdown to v3.8.1 [security]
+- *(deps)* Update module github.com/aws/aws-sdk-go-v2/service/bedrockruntime to v1.50.4 [security]
+- *(deps)* Update module go.opentelemetry.io/otel to v1.41.0 [security]
+- *(deps-dev)* Bump morgan in /frontend/tests/e2e_tests
+- *(deps)* Bump golang.org/x/net from 0.54.0 to 0.55.0 in /backend
+- *(deps)* Bump github.com/sigstore/sigstore-go
+- *(deps)* Bump golang.org/x/crypto from 0.51.0 to 0.52.0 in /backend
+- *(deps)* Update dependency mendersoftware/mender-artifact to v4.4.1
+- *(deps)* Update docker-base-images
+- *(deps)* Update golang-dependencies
+- *(deps)* Upgrade miniredis to stable v2.38.0 and gosjonq to v2.5.2
+- *(deps-dev)* Bump ws from 8.20.0 to 8.21.0 in /frontend
+- *(deps)* Update npm-dev-dependencies
+- *(deps)* Update npm-mui to v9.9.0
+- *(deps)* Downgrade mender-artifact to v0.0.0-20250724101633-c5f6563a4bcf
+
+### All tickets resolved in this release
+
+| Ticket |
+|---|
+| [MEN-9708](https://northerntech.atlassian.net/browse/MEN-9708) |
+| [MEN-9712](https://northerntech.atlassian.net/browse/MEN-9712) |
+| [MEN-9711](https://northerntech.atlassian.net/browse/MEN-9711) |
+| [MEN-9715](https://northerntech.atlassian.net/browse/MEN-9715) |
+| [MEN-9312](https://northerntech.atlassian.net/browse/MEN-9312) |
+| [MEN-9950](https://northerntech.atlassian.net/browse/MEN-9950) |
+| [MEN-9992](https://northerntech.atlassian.net/browse/MEN-9992) |
+
+
+## 4.2.0-saas.13 - 2026-07-08
 
 
 ### Bug fixes
