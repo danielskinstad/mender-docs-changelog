@@ -7,6 +7,20 @@ shortcode-core:
 github: false
 ---
 
+## monitor-client 1.5.0 (2026-02-23)
+
+### 1.5.0 - 2026-02-23
+
+##### Bug Fixes
+
+* Add user warning when possible message flood is detected.
+  ([MEN-7216](https://northerntech.atlassian.net/browse/MEN-7216))
+
+##### Features
+
+* Add support for `version` argument in monitor ctl tool
+  ([MEN-8249](https://northerntech.atlassian.net/browse/MEN-8249))
+
 ## monitor-client 1.4.4
 
 _Released 02.17.2026_
