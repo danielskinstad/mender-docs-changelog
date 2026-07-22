@@ -7,6 +7,30 @@ shortcode-core:
 github: false
 ---
 
+## meta-mender wrynose-v2026.07
+
+### Changelogs
+
+New changes in meta-mender since wrynose-v2026.06:
+
+##### Bug Fixes
+
+* Revert erroneous change to LICENCE checksum for mender-artifact_git recipe.
+  Commit introducing the regression: 3a6807e8f5f06190472c7b6b2ef1ab46bff39cc5
+* Ship esp32 mock interface in mender-orchestrator-support demo
+  The demo mock-env now provides an esp32 interface under
+  interfaces/v1. It is installed by install-mock-interfaces but was
+  not listed in FILES, so do_package_qa failed with an
+  installed-but-not-shipped error when building the demo image.
+  ([MEN-9793](https://northerntech.atlassian.net/browse/MEN-9793))
+
+##### Features
+
+* Add recipes for mender-orchestrator and mender-orchestrator-support 0.6.0
+  ([MEN-9793](https://northerntech.atlassian.net/browse/MEN-9793))
+* Add recipes for mender-artifact 4.4.1.
+  ([MEN-9793](https://northerntech.atlassian.net/browse/MEN-9793))
+
 ## meta-mender wrynose-v2026.06
 
 ### Changelogs
@@ -94,6 +118,16 @@ New changes in meta-mender since scarthgap-v2026.04:
 * Remove recipes for `mender-artifact` 3.11, 4.0 and 4.1 series
 * Remove recipes for `mender` 4.0 series
 * Remove recipes for `mender-connect` 2.2 series
+
+## meta-mender scarthgap-v2026.07
+
+### Changelogs
+
+New changes in meta-mender since scarthgap-v2026.06:
+
+##### Features
+
+* Add recipe for mender-artifact 4.4.1.
 
 ## meta-mender scarthgap-v2026.06
 
