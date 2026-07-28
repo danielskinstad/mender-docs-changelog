@@ -7,6 +7,16 @@ shortcode-core:
 github: false
 ---
 
+## 4.0.4 - 2026-07-28
+
+
+### Dependency updates
+
+- *(deps)* Update golang dependencies
+- *(deps)* Upgrade golang container image to 1.26.5
+- *(deps)* Upgrade alpine to 3.23.5
+- *(deps)* Upgrade container image golang to 1.26.5 (enterprise)
+
 ## 4.1.2 - 2026-07-09
 
 
