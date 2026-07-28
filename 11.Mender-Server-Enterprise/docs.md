@@ -7,6 +7,33 @@ shortcode-core:
 github: false
 ---
 
+## 4.1.3 - 2026-07-28
+
+
+### Bug fixes
+
+- *(generate-delta-worker)* Mender-binary-delta runs inside work directory ([MEN-9992](https://northerntech.atlassian.net/browse/MEN-9992))
+- *(generate-delta-worker)* Fifo deadlock if download times out
+- *(generate-delta-worker)* Asynchronous errors not caught when downloading
+
+### Dependency updates
+
+- *(deps)* Update module go.opentelemetry.io/otel to v1.41.0 [security]
+- *(deps)* Updated golang dependencies
+- *(deps)* Upgrade container image golang to 1.26.5
+- *(deps)* Upgrade container image alpine to 3.23.5
+- *(deps)* Upgrade container image golang to 1.26.5 (enterprise)
+- *(deps)* Upgrade go modules (enterprise)
+
+---
+### All tickets resolved in this release
+
+| Ticket |
+|---|
+| [MEN-9992](https://northerntech.atlassian.net/browse/MEN-9992) |
+
+---
+
 ## 4.0.4 - 2026-07-28
 
 
