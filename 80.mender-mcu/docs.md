@@ -6,7 +6,6 @@ shortcode-core:
     active: false
 github: false
 ---
-## 0.9.0 - 2025-04-11
+## 1.0.0 - 2026-04-20
 
-* Preview of Mender MCU
-
+* The first stable release
