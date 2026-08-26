@@ -7,6 +7,210 @@ shortcode-core:
 github: false
 ---
 
+## 4.2.0-saas.15 - 2026-08-26
+
+
+### New features
+
+- *(inventory)* Process orchestrator inventory attributes ([MEN-9632](https://northerntech.atlassian.net/browse/MEN-9632))
+- *(workflows)* Add user invitation workflow
+- *(tenantadm)* Set limit of test devices with create-org cli ([MEN-9988](https://northerntech.atlassian.net/browse/MEN-9988))
+- *(deviceauth)* Test devices support for GET limits ([MEN-9985](https://northerntech.atlassian.net/browse/MEN-9985))
+- *(useradm)* Add RBAC rules for accessing alpha versioned endpoints
+- *(inventory)* Add endpoint for fetching system device components ([MEN-9794](https://northerntech.atlassian.net/browse/MEN-9794))
+- *(useradm)* Remove ability for users to change any other user's email ([MEN-10010](https://northerntech.atlassian.net/browse/MEN-10010))
+- *(gui)* Implemented a new email change flow ([MEN-9251](https://northerntech.atlassian.net/browse/MEN-9251))
+- *(useradm)* Send the invitation with the POST /users v2 ([MEN-9741](https://northerntech.atlassian.net/browse/MEN-9741))
+- *(gui)* Remove email edit from user details view ([MEN-9699](https://northerntech.atlassian.net/browse/MEN-9699))
+- *(gui)* Show verification, 2FA, and auth type columns in user list ([MEN-9804](https://northerntech.atlassian.net/browse/MEN-9804))
+- *(gui)* Added system device tab to device details ([MEN-9633](https://northerntech.atlassian.net/browse/MEN-9633))
+- *(admin-panel)* Add notice broadcast endpoints and workflows client
+- *(admin-panel)* Add tenant endpoints with fan-out detail aggregation ([MEN-9760](https://northerntech.atlassian.net/browse/MEN-9760))
+- *(admin-panel)* Add user endpoints ([MEN-9760](https://northerntech.atlassian.net/browse/MEN-9760))
+- *(admin-panel)* Add notice broadcast endpoints
+- *(iot-manager)* Device-status-changed webhook event contains auth set
+  Only decommission events does not carry auth sets.
+
+- *(admin-panel)* Add generated api client based on admin-panel specs ([MEN-9765](https://northerntech.atlassian.net/browse/MEN-9765))
+- *(admin-panel)* Add dashboard with plan breakdown and trial count ([MEN-9768](https://northerntech.atlassian.net/browse/MEN-9768))
+- *(admin-panel)* Add tenant management frontend ([MEN-9766](https://northerntech.atlassian.net/browse/MEN-9766))
+- *(admin-panel)* Add user management capabilities ([MEN-9767](https://northerntech.atlassian.net/browse/MEN-9767))
+- *(admin-panel)* Add notice broadcast functionality to frontend
+- *(admin-panel)* Add nginx Dockerfile for the admin panel frontend ([MEN-9769](https://northerntech.atlassian.net/browse/MEN-9769))
+- *(deviceauth)* Add custom rate limiter for assigning test device flag ([MEN-10033](https://northerntech.atlassian.net/browse/MEN-10033))
+- *(tenantadm)* Implement endpoint for fetching own tenant token ([MEN-9579](https://northerntech.atlassian.net/browse/MEN-9579))
+- *(deployments)* Extend final uniform phase for dynamic deployments ([MEN-9972](https://northerntech.atlassian.net/browse/MEN-9972))
+- *(deviceauth)* Add feature flag to restore legacy provision behavior ([MEN-10027](https://northerntech.atlassian.net/browse/MEN-10027))
+- *(inventory)* Return the identities with the get devices/:id endpoint ([MEN-9974](https://northerntech.atlassian.net/browse/MEN-9974))
+- *(inventory)* Search inventory by identity alpha endpoint ([MEN-9976](https://northerntech.atlassian.net/browse/MEN-9976))
+- *(useradm)* Add RBAC permission for search by identity endpoint ([MEN-9976](https://northerntech.atlassian.net/browse/MEN-9976))
+- *(deployments)* Return phases and set statuses for uniform deployments ([MEN-9971](https://northerntech.atlassian.net/browse/MEN-9971))
+
+### Improvements
+
+- *(inventory)* Remove extra device read from upsert attributes ([MEN-9632](https://northerntech.atlassian.net/browse/MEN-9632))
+- *(inventory)* Lower cyclomatic complexity of ReplaceAttributes ([MEN-9632](https://northerntech.atlassian.net/browse/MEN-9632))
+- *(deviceauth)* Refactor mehtod for deleting authentication set ([MEN-9880](https://northerntech.atlassian.net/browse/MEN-9880))
+- *(deviceauth)* Reduce cyclomatic complexity of VerifyToken method
+- *(generate-delta-worker)* Propagate timeout through context
+- *(generate-delta-worker)* Refactor root command initialization
+- *(gui)* Allowed email editing only on os & keep it tied to verification on (non-)enterprise
+- *(gui)* Let user modifications handle their own dialog visibility
+- *(gui)* Let user deletion confirmation rely on common confirmation dialog
+- *(gui)* Let user role changes get reflected in the form they happen in right away
+- *(gui)* Aligned user details w/ updated design
+- *(inventory)* Lower cyclomatic complexity of ReplaceAttributes
+- Add openapi spec and go backend scaffold for admin-panel ([MEN-9759](https://northerntech.atlassian.net/browse/MEN-9759))
+- *(admin-panel)* Name the notice routes like the rest
+- *(deviceauth)* Split out logic for aggregating device status
+- *(deviceauth)* Push updateDeviceStatus.GetDeviceById to caller
+- *(deviceauth)* Centralize handlers for setting authset status
+- *(deviceauth)* Split out updateAuthSetStatus from setAuthSetStatus
+- *(deviceauth)* Unify all device status update paths
+- *(deviceauth)* Consolidate auth set update: preauth -> accepted
+- *(deviceauth)* Move tier handling to updateDeviceStatus
+- *(deviceauth)* Use model.Tier everywhere
+- *(deviceauth)* Fetch the auth set only if it already exists
+- *(deviceauth)* Do not aggregate device status if it will not change
+- *(admin-panel)* Add standalone React admin panel frontend ([MEN-9764](https://northerntech.atlassian.net/browse/MEN-9764))
+- Replace old get tenant info endpoint with new endpoints
+- *(deployments)* Move software RBAC tests to rbac_test.go
+- *(gui)* Let deployment log consumers rely on the shared log dialog
+- *(gui)* Aligned controlled text input further w/ rhf api
+- *(gui)* Converted artifact generation to rhf ([MEN-9318](https://northerntech.atlassian.net/browse/MEN-9318))
+
+### Bug fixes
+
+- *(deviceauth)* Remove device token from cache only when deleting accepted auth set ([MEN-9880](https://northerntech.atlassian.net/browse/MEN-9880))
+- *(generate-delta-worker)* Fifo deadlock if download times out
+- *(generate-delta-worker)* Asynchronous errors not caught when downloading
+- *(deviceauth)* Delete preauthorize device only if there are no auth sets ([MEN-9880](https://northerntech.atlassian.net/browse/MEN-9880))
+- *(deviceauth)* Delete orphan auth sets when veryfing token ([MEN-9880](https://northerntech.atlassian.net/browse/MEN-9880))
+- *(deviceauth)* Fix error handling when updating device status ([MEN-9880](https://northerntech.atlassian.net/browse/MEN-9880))
+- *(useradm)* Extend userauth traefik rule with "users/me/email-change/complete"
+- *(deviceconnect)* Restore read deadline to reap dead device connections ([MEN-9934](https://northerntech.atlassian.net/browse/MEN-9934))
+- *(inventory)* Return error when failing to find a device
+- *(generate-delta-worker)* Always reap mender-binary-delta-generator on error ([MEN-10001](https://northerntech.atlassian.net/browse/MEN-10001))
+- *(generate-delta-worker)* Remove hard-coded 15m timeout to upload artifact
+- *(deployments)* Stop generating delta artifacts on already installed images ([MEN-10002](https://northerntech.atlassian.net/browse/MEN-10002))
+- *(gui)* Ensure correct global retry count is displayed in deployment options
+- *(gui)* Let auditlog filters stay in line if there's something telling them to stretch vertically
+- *(gui)* Let deployment creation reflect inability to generate delta deployments for trial users ([MEN-9586](https://northerntech.atlassian.net/browse/MEN-9586))
+- *(workflows)* Add 5 second delay on retries for provision device jobs
+- *(deviceauth)* Improve device provisioning workflow handling ([MEN-9993](https://northerntech.atlassian.net/browse/MEN-9993))
+- *(gui)* Don't require email verification to add users on open source builds
+- *(gui)* Email verification is required for all multitenant installations
+- *(gui)* Require password and gate reset-link checkbox on os
+- *(gui)* Check if global setting changed before submitting ([MEN-9995](https://northerntech.atlassian.net/browse/MEN-9995))
+- *(create-artifact-worker)* Pin mender-orchestrator-manifest-gen to a release tag ([QA-345](https://northerntech.atlassian.net/browse/QA-345))
+- *(deviceconnect)* Allow messages larger than bandlimit rate ([MEN-10014](https://northerntech.atlassian.net/browse/MEN-10014))
+  If a message is larger than the per second rate limit for a device, all
+  sessions to that device will forcefully terminate. This commit allows
+  such messages, by making the peer wait for more than one second until
+  the whole message is accepted.
+
+- *(deviceauth)* Check test device usage when accepting device as trial ([MEN-9352](https://northerntech.atlassian.net/browse/MEN-9352))
+  When accepting a new device as trial, check usage limits are within
+  boundaries before setting the test device flag. If limit is exhausted,
+  do not assign the test flag but accept the device.
+
+- *(deviceauth)* Test device status automation for trial accounts ([MEN-10032](https://northerntech.atlassian.net/browse/MEN-10032))
+  When a device transitions from accepted to any other status, the trial
+  flag is removed from the device for trial accounts.
+
+- *(tenantadm)* Set binary deltas to false on signup for trials ([MEN-9499](https://northerntech.atlassian.net/browse/MEN-9499))
+- *(deviceauth)* Count no tier as standard tier when processing preauth ([MEN-9598](https://northerntech.atlassian.net/browse/MEN-9598))
+- *(workflows)* Update verify email template to context neutral message ([MEN-9183](https://northerntech.atlassian.net/browse/MEN-9183))
+- *(deviceauth)* Protect device status from concurrent updates ([MEN-9997](https://northerntech.atlassian.net/browse/MEN-9997))
+- *(deviceauth)* Check limit only if device status transitions to accepted
+- *(deviceauth)* Adjust limit check preconditions to account for tiers
+- *(deviceauth)* Rejecting or resetting an accepted auth set trigger auditlog
+- *(gui)* Change wrong UI status for aborted deployments ([MEN-9983](https://northerntech.atlassian.net/browse/MEN-9983))
+- *(gui)* Show auditlog detail information also for device file transfers ([MEN-9316](https://northerntech.atlassian.net/browse/MEN-9316))
+- *(gui)* Click on the audilog link not overtaken by row handler ([MEN-9316](https://northerntech.atlassian.net/browse/MEN-9316))
+- *(deviceauth)* Ensured flag status is refreshed in cache as well on device status change
+- *(deployments)* Support empty tier in incompatible tier deployment substate ([MEN-10074](https://northerntech.atlassian.net/browse/MEN-10074))
+- *(deviceauth)* Use canonical tier in auth request error cache key
+- *(deviceconnect)* Accesslog shows correct status and adds `wsstatus`
+- *(gui)* Ensured data w/ multiple attribute values gets shown in a readable manner ([MEN-10073](https://northerntech.atlassian.net/browse/MEN-10073))
+
+### Dependency updates
+
+- *(deps)* Update module github.com/russellhaering/goxmldsig to v1.6.0 [security]
+- *(deps)* Update dependency react-router to v8.3.0 [security]
+- *(deps)* Update dependency @babel/plugin-transform-runtime to v8
+- *(deps-dev)* Bump svgo from 3.3.3 to 3.3.4 in /frontend
+- *(deps-dev)* Bump postcss from 8.5.15 to 8.5.23 in /frontend
+- *(deps-dev)* Bump fast-uri from 3.1.2 to 3.1.4 in /frontend
+- *(deps)* Bump brace-expansion and gaxios
+- *(deps)* Update npm-dev-dependencies
+- *(deps)* Update golang-dependencies
+- *(deps)* Update npm-prod-dependencies
+- *(deps-dev)* Bump fast-uri from 3.1.4 to 3.1.5 in /frontend
+- *(deps)* Update npm-mui
+- *(deps)* Update docker-base-images
+- *(deps)* Bump google.golang.org/grpc in /backend/tests/runner
+- *(deps)* Bump pillow from 12.2.0 to 12.3.0 in /backend/tests
+- *(deps)* Bump github.com/sigstore/sigstore-go
+- *(deps)* Bump js-yaml from 4.2.0 to 4.3.1 in /frontend
+- *(deps)* Bump mermaid from 11.15.0 to 11.16.1 in /frontend
+- *(deps)* Tidy test dependencies
+- *(deps)* Update npm-mui to v9.12.0
+- *(deps)* Update docker-compose
+- *(deps)* Update ${mirror_registry:-docker.io}/stripe/stripe-cli docker tag to v1.50.5
+- *(deps)* Update mongo docker tag to v8.3
+
+### All tickets resolved in this release
+
+| Ticket |
+|---|
+| [MEN-9632](https://northerntech.atlassian.net/browse/MEN-9632) |
+| [MEN-9880](https://northerntech.atlassian.net/browse/MEN-9880) |
+| [MEN-9988](https://northerntech.atlassian.net/browse/MEN-9988) |
+| [MEN-9985](https://northerntech.atlassian.net/browse/MEN-9985) |
+| [MEN-9934](https://northerntech.atlassian.net/browse/MEN-9934) |
+| [MEN-9794](https://northerntech.atlassian.net/browse/MEN-9794) |
+| [MEN-10001](https://northerntech.atlassian.net/browse/MEN-10001) |
+| [MEN-10010](https://northerntech.atlassian.net/browse/MEN-10010) |
+| [MEN-10002](https://northerntech.atlassian.net/browse/MEN-10002) |
+| [MEN-9251](https://northerntech.atlassian.net/browse/MEN-9251) |
+| [MEN-9586](https://northerntech.atlassian.net/browse/MEN-9586) |
+| [MEN-9993](https://northerntech.atlassian.net/browse/MEN-9993) |
+| [MEN-9741](https://northerntech.atlassian.net/browse/MEN-9741) |
+| [MEN-9995](https://northerntech.atlassian.net/browse/MEN-9995) |
+| [MEN-9699](https://northerntech.atlassian.net/browse/MEN-9699) |
+| [MEN-9804](https://northerntech.atlassian.net/browse/MEN-9804) |
+| [MEN-9633](https://northerntech.atlassian.net/browse/MEN-9633) |
+| [QA-345](https://northerntech.atlassian.net/browse/QA-345) |
+| [MEN-10014](https://northerntech.atlassian.net/browse/MEN-10014) |
+| [MEN-9352](https://northerntech.atlassian.net/browse/MEN-9352) |
+| [MEN-10032](https://northerntech.atlassian.net/browse/MEN-10032) |
+| [MEN-9499](https://northerntech.atlassian.net/browse/MEN-9499) |
+| [MEN-9598](https://northerntech.atlassian.net/browse/MEN-9598) |
+| [MEN-9759](https://northerntech.atlassian.net/browse/MEN-9759) |
+| [MEN-9760](https://northerntech.atlassian.net/browse/MEN-9760) |
+| [MEN-9183](https://northerntech.atlassian.net/browse/MEN-9183) |
+| [MEN-9997](https://northerntech.atlassian.net/browse/MEN-9997) |
+| [MEN-9764](https://northerntech.atlassian.net/browse/MEN-9764) |
+| [MEN-9765](https://northerntech.atlassian.net/browse/MEN-9765) |
+| [MEN-9768](https://northerntech.atlassian.net/browse/MEN-9768) |
+| [MEN-9766](https://northerntech.atlassian.net/browse/MEN-9766) |
+| [MEN-9767](https://northerntech.atlassian.net/browse/MEN-9767) |
+| [MEN-9769](https://northerntech.atlassian.net/browse/MEN-9769) |
+| [MEN-10033](https://northerntech.atlassian.net/browse/MEN-10033) |
+| [MEN-9579](https://northerntech.atlassian.net/browse/MEN-9579) |
+| [MEN-9983](https://northerntech.atlassian.net/browse/MEN-9983) |
+| [MEN-9316](https://northerntech.atlassian.net/browse/MEN-9316) |
+| [MEN-9972](https://northerntech.atlassian.net/browse/MEN-9972) |
+| [MEN-10027](https://northerntech.atlassian.net/browse/MEN-10027) |
+| [MEN-9974](https://northerntech.atlassian.net/browse/MEN-9974) |
+| [MEN-10074](https://northerntech.atlassian.net/browse/MEN-10074) |
+| [MEN-9976](https://northerntech.atlassian.net/browse/MEN-9976) |
+| [MEN-10073](https://northerntech.atlassian.net/browse/MEN-10073) |
+| [MEN-9318](https://northerntech.atlassian.net/browse/MEN-9318) |
+| [MEN-9971](https://northerntech.atlassian.net/browse/MEN-9971) |
+
+
 ## 4.2.0-saas.14 - 2026-07-17
 
 
