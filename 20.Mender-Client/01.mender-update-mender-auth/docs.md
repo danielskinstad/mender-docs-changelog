@@ -86,6 +86,47 @@ New changes in mender since 5.0.4:
 * libarchive can now be fetched, built and statically linked as part of the build
   ([MEN-9130](https://northerntech.atlassian.net/browse/MEN-9130))
 
+
+## mender 5.0.6-build2
+
+_Released 08.31.2026_
+
+### Changelogs
+
+#### mender (5.0.6-build2)
+
+New changes in mender since 5.0.5:
+
+##### Bug Fixes
+
+* Fix a segfault caused by global variables: common_global_options and common_description_append
+  referencing another global: DefaultPaths. As the initialization order of globals is unspecified in
+  the standard, it caused referencing uninitialized DefaultPaths on Ubuntu 26.04 when using -flto
+  Link-Time Optimization flag.
+  ([MEN-9878](https://northerntech.atlassian.net/browse/MEN-9878))
+* Check that the file exists before claiming "success".
+  The motivation is to have a more defensive generator to protect against
+  `mender-artifact` bugs like this one:
+  * https://github.com/mendersoftware/mender-artifact/pull/824
+* Previously the generators wouldn't clean up after themselves when
+  exiting half-way due to an error.
+* Fix mender-update hanging indefinitely (never reporting a
+  deployment failure and never returning to the poll loop) when a network
+  outage during artifact download lasted long enough for the download
+  resumer to give up on resuming.
+  ([MEN-9954](https://northerntech.atlassian.net/browse/MEN-9954))
+* Fix the directory and single-file Update Modules reporting a deployment as
+  successful when the destination could not be backed up, leaving the destination unchanged.
+  ([MEN-10021](https://northerntech.atlassian.net/browse/MEN-10021))
+* Fix deployment log uploads being rejected in case
+  extra deployment logs are produced while being uploaded
+  ([MEN-10017](https://northerntech.atlassian.net/browse/MEN-10017))
+* Fix the client hanging indefinitely when a server accepts a request but
+  never sends a response, which left the device unmanageable until it was restarted.
+  ([MEN-10031](https://northerntech.atlassian.net/browse/MEN-10031), [MEN-9433](https://northerntech.atlassian.net/browse/MEN-9433))
+* Large deployment logs are now trimmed to be accepted by the server
+  ([MEN-9415](https://northerntech.atlassian.net/browse/MEN-9415))
+
 ## mender 5.0.5
 
 _Released 06.17.2026_
